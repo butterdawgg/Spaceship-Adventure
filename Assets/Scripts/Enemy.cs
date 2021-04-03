@@ -14,12 +14,10 @@ public class Enemy : Entity
     //Private variables:
     private Rigidbody rb;
     Vector3 dirToTarget;
-    bool canFire;
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        StartCoroutine(FireCoroutine());
         StartCoroutine(DieCoroutine());
         ps.Stop();
     }
@@ -28,7 +26,7 @@ public class Enemy : Entity
     {
         if (health <= 0)
         {
-            canFire = false;
+            SetGunFiring(false);
             return;
         }
 
@@ -50,54 +48,41 @@ public class Enemy : Entity
         {
             Rotate();
             Move();
-            canFire = false;
+            SetGunFiring(false);
         }
         else if (distance < goRadius & distance < shootRadius & distance > stopRadius)
         {
             Rotate();
             Move();
-            canFire = true;
+            SetGunFiring(true);
         }
         else if (distance < goRadius & distance < shootRadius & distance < stopRadius)
         {
             Rotate();
-            canFire = true;
+            SetGunFiring(true);
         }
         else
         {
-            canFire = false;
+            SetGunFiring(false);
             return;
         }
     }
 
-    void Move()
+    private void Move()
     {
         rb.AddForce(transform.forward * maxSpeed);
     }
 
-    void Rotate()
+    private void Rotate()
     {
         Quaternion orientation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dirToTarget), rotationSpeed);
         rb.MoveRotation(orientation);
     }
 
-    private IEnumerator FireCoroutine()
+    private void SetGunFiring(bool fire)
     {
-        if (canFire & Player.Health > 0)
-        {
-            yield return new WaitForSeconds(cooldown);
-            Fire();
-        }
-        yield return null;
-        StartCoroutine(FireCoroutine());
-    }
-
-    void Fire()
-    {
-        Quaternion orientation = Quaternion.LookRotation(transform.forward);
-        GameObject projectile = Instantiate(projectileProtoype, muzzlePoint.transform.position, orientation);
-        projectile.GetComponent<Projectile>().Damage = damage;
-        projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileSpeed;
+        for (int i = 0; i < hardpoints.Length; i++)
+            hardpoints[i].transform.GetChild(0).gameObject.GetComponent<EntityGun>().CanFire = fire;
     }
 
     IEnumerator DieCoroutine()

@@ -8,13 +8,9 @@ public class Entity : MonoBehaviour
     public GameObject healthBar;
     public float healthBarScale;
 
-    public GameObject muzzlePoint;
-    public GameObject projectileProtoype;
-    public float cooldown;
-    public float projectileSpeed;
-    public float damage;
-
     public GameObject body;
     public ParticleSystem ps;
     public float scoreGetAmount;
+
+    public GameObject[] hardpoints;
 }

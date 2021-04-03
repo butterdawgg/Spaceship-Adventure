@@ -12,13 +12,10 @@ public class Tower : Entity
     
     //Private variables
     private Rigidbody rb;
-    private bool isOnTarget;
-
 
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
-        StartCoroutine(FireCoroutine());
         StartCoroutine(DieCoroutine());
         ps.Stop();
     }
@@ -27,7 +24,7 @@ public class Tower : Entity
     { 
         if (health <= 0)
         {
-            isOnTarget = false;
+            SetGunFiring(false);
             return;
         }
 
@@ -49,33 +46,20 @@ public class Tower : Entity
          
         if (distance > radius)
         {
-            isOnTarget = false;
+            SetGunFiring(false);
             return;
         }
-        isOnTarget = true;
+        SetGunFiring(true);
 
 
         Quaternion orientation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(-dirToTarget), smoothness);
         rb.MoveRotation(orientation);
     }
 
-    void Fire()
+    private void SetGunFiring(bool fire)
     {
-        Quaternion orientation = Quaternion.LookRotation(-transform.forward);
-        GameObject projectile = Instantiate(projectileProtoype, muzzlePoint.transform.position, orientation);
-        projectile.GetComponent<Projectile>().Damage = damage;
-        projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileSpeed;
-    }
-    
-    private IEnumerator FireCoroutine()
-    {
-        if (isOnTarget & Player.Health > 0)
-        {
-            yield return new WaitForSeconds(cooldown);
-            Fire();
-        }
-        yield return null;
-        StartCoroutine(FireCoroutine());
+        for (int i = 0; i < hardpoints.Length; i++)
+            hardpoints[i].transform.GetChild(0).gameObject.GetComponent<EntityGun>().CanFire = fire;
     }
 
     IEnumerator DieCoroutine()
