@@ -13,4 +13,5 @@ public class Entity : MonoBehaviour
     public float scoreGetAmount;
 
     public GameObject[] hardpoints;
+    public GameObject[] guns;
 }

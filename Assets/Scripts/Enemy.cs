@@ -20,6 +20,11 @@ public class Enemy : Entity
         rb = GetComponent<Rigidbody>();
         StartCoroutine(DieCoroutine());
         ps.Stop();
+
+        for (int i = 0; i < hardpoints.Length; i++)
+        {
+            Instantiate(guns[Random.Range(0, guns.Length)], hardpoints[i].transform);
+        }
     }
 
     void FixedUpdate()
@@ -41,7 +46,7 @@ public class Enemy : Entity
         {
             healthBar.SetActive(true);
             healthBar.transform.rotation = Quaternion.LookRotation(dirToTarget, transform.up);
-            healthBar.transform.localScale = new Vector3(healthBarScale * health, 0.15f, 1f);
+            healthBar.transform.localScale = new Vector3(healthBarScale * health, healthBar.transform.localScale.y, 1f);
         }
 
         if (distance < goRadius & distance > shootRadius & distance > stopRadius)
@@ -93,6 +98,8 @@ public class Enemy : Entity
             Player.Score += scoreGetAmount;
             Destroy(healthBar);
             Destroy(body);
+            for (int i = 0; i < hardpoints.Length; i++)
+                Destroy(hardpoints[i]);
             yield return new WaitForSeconds(0.5f);
             Destroy(gameObject);
         }

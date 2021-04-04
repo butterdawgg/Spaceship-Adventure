@@ -25,8 +25,7 @@ public class PlayerGun : Gun
     private void Fire()
     {
         GameObject projectile = Instantiate(projectilePrototype, muzzlePoint.transform.position, transform.rotation);
-        Projectile pr = projectile.GetComponent<Projectile>();
-        pr.Damage = damage;
-        pr.Speed = projectileSpeed;
+        projectile.GetComponent<Projectile>().Damage = damage;
+        projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileSpeed;
     }
 }

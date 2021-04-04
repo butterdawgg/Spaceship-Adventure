@@ -41,7 +41,7 @@ public class Tower : Entity
         {
             healthBar.SetActive(true);
             healthBar.transform.rotation = Quaternion.LookRotation(dirToTarget, towerBase.transform.up);
-            healthBar.transform.localScale = new Vector3(healthBarScale * health, 0.2f, 1f);
+            healthBar.transform.localScale = new Vector3(healthBarScale * health, healthBar.transform.localScale.y, 1f);
         }
          
         if (distance > radius)
@@ -50,7 +50,6 @@ public class Tower : Entity
             return;
         }
         SetGunFiring(true);
-
 
         Quaternion orientation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(-dirToTarget), smoothness);
         rb.MoveRotation(orientation);
@@ -70,6 +69,8 @@ public class Tower : Entity
             Player.Score += scoreGetAmount;
             Destroy(healthBar);
             Destroy(body);
+            for (int i = 0; i < hardpoints.Length; i++)
+                Destroy(hardpoints[i]);
             yield return new WaitForSeconds(0.5f);
             Destroy(gameObject);
         }

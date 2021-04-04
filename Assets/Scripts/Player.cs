@@ -14,6 +14,7 @@ public class Player : MonoBehaviour
 
     public float lookRotateSpeed;
     public float rollSpeed, rollAcceleration;
+    public GameObject[] hardpoints;
 
 
     //Public properties:
@@ -103,6 +104,8 @@ public class Player : MonoBehaviour
         {
             ps.Play();
             Destroy(render);
+            for (int i = 0; i < hardpoints.Length; i++)
+                Destroy(hardpoints[i]);
             yield return new WaitForSeconds(2f);
             if (UI.highScore < Score)
                 UI.SetHighScore(Score);
