@@ -7,8 +7,8 @@ public class Tower : Entity
     //Public variables:
     public float radius;
     public float smoothness;
+    public GameObject towerPivot;
     public GameObject towerBase;
-    public Vector3 defaultPos;
     
     //Private variables
     private Rigidbody rb;
@@ -18,17 +18,23 @@ public class Tower : Entity
         rb = GetComponent<Rigidbody>();
         StartCoroutine(DieCoroutine());
         ps.Stop();
+
+        for (int i = 0; i < hardpoints.Length; i++)
+        {
+            Instantiate(guns[Random.Range(0, guns.Length)], hardpoints[i].transform);
+        }
     }
 
     void FixedUpdate()
-    { 
+    {
+        towerPivot.transform.localEulerAngles = new Vector3(towerPivot.transform.localEulerAngles.x, transform.localEulerAngles.y, towerPivot.transform.localEulerAngles.z);
+
         if (health <= 0)
         {
             SetGunFiring(false);
             return;
         }
-
-        transform.localPosition = defaultPos;
+        
         Vector3 dirToTarget = (Player.Position - transform.position).normalized;
 
         float distance = (Player.Position - transform.position).magnitude;
@@ -51,8 +57,7 @@ public class Tower : Entity
         }
         SetGunFiring(true);
 
-        Quaternion orientation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(-dirToTarget), smoothness);
-        rb.MoveRotation(orientation);
+        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dirToTarget, towerBase.transform.up), smoothness));
     }
 
     private void SetGunFiring(bool fire)
