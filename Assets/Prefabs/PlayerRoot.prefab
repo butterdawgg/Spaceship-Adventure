@@ -23,10 +23,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 560589661178939553}
-  - component: {fileID: 560589661178939558}
   - component: {fileID: 560589661178939559}
   - component: {fileID: 560589661178939552}
   - component: {fileID: 3163095462208873179}
+  - component: {fileID: 4001840004686455280}
   m_Layer: 9
   m_Name: PlayerRoot
   m_TagString: Player
@@ -53,22 +53,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
---- !u!114 &560589661178939558
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 560589661178939556}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4a0fea948f31bf4e9d5ae0aba7a3e63, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  shipCamera: {fileID: 560589662597027102}
-  smoothness: 1
-  rotationSmoothness: 1
-  angle: 20
 --- !u!114 &560589661178939559
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -81,6 +65,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5725a7fcba6c2b429290bf92540f4fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4097
   ps: {fileID: 6251027795129249863}
   render: {fileID: 385773224107094806}
   health: 250
@@ -125,6 +112,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.7313492, y: 0.55504775, z: 3.3126488}
   m_Center: {x: -0.009962021, y: 0.019731343, z: 0.8252436}
+--- !u!114 &4001840004686455280
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 560589661178939556}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a0fea948f31bf4e9d5ae0aba7a3e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipCamera: {fileID: 560589662597027102}
+  smoothness: 1
+  rotationSmoothness: 1.5
+  angle: 15
 --- !u!1 &560589662597027100
 GameObject:
   m_ObjectHideFlags: 0
@@ -152,7 +155,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 560589662597027100}
   m_LocalRotation: {x: 0.13052616, y: 0, z: 0, w: 0.9914449}
-  m_LocalPosition: {x: 0, y: 2, z: -4}
+  m_LocalPosition: {x: 0, y: 3, z: -4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 560589661178939553}

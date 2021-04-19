@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1844461980241887247}
   - component: {fileID: 3939493471683151877}
   m_Layer: 10
-  m_Name: PlayerProjectile 1
+  m_Name: PlayerProjectileHeavy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -197,7 +197,7 @@ TrailRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Time: 1
+  m_Time: 3
   m_Parameters:
     serializedVersion: 3
     widthMultiplier: 1
@@ -215,12 +215,12 @@ TrailRenderer:
         outWeight: 0
       - serializedVersion: 3
         time: 1
-        value: 0
-        inSlope: -0.77486587
-        outSlope: -0.77486587
+        value: 0.021397062
+        inSlope: -0.16101116
+        outSlope: -0.16101116
         tangentMode: 0
         weightedMode: 0
-        inWeight: 0.096618414
+        inWeight: 0.13285029
         outWeight: 0
       m_PreInfinity: 2
       m_PostInfinity: 2
@@ -255,7 +255,7 @@ TrailRenderer:
       m_NumColorKeys: 2
       m_NumAlphaKeys: 2
     numCornerVertices: 0
-    numCapVertices: 0
+    numCapVertices: 90
     alignment: 0
     textureMode: 0
     shadowBias: 0.5

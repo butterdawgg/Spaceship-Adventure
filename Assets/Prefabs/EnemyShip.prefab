@@ -4940,9 +4940,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 646fb42e238ade54895c0f382157b2a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 100
+  health: 250
   healthBar: {fileID: 599811673731680528}
-  healthBarScale: 0.02
+  healthBarScale: 0.01
   body: {fileID: 3175957331826152382}
   ps: {fileID: 5443905348166023868}
   scoreGetAmount: 20

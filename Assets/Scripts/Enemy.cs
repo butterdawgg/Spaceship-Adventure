@@ -79,6 +79,7 @@ public class Enemy : Entity
     }
 
     private void Rotate()
+
     {
         Quaternion orientation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dirToTarget), rotationSpeed);
         rb.MoveRotation(orientation);
@@ -87,7 +88,10 @@ public class Enemy : Entity
     private void SetGunFiring(bool fire)
     {
         for (int i = 0; i < hardpoints.Length; i++)
-            hardpoints[i].transform.GetChild(0).gameObject.GetComponent<EntityGun>().CanFire = fire;
+        {
+            if (hardpoints[i] != null)
+                hardpoints[i].transform.GetChild(0).gameObject.GetComponent<EntityGun>().CanFire = fire;
+        }
     }
 
     IEnumerator DieCoroutine()

@@ -9,24 +9,28 @@ public class Tower : Entity
     public float smoothness;
     public GameObject towerPivot;
     public GameObject towerBase;
+    public Vector3 defaultPosition;
     
-    //Private variables
-    private Rigidbody rb;
 
     void Awake()
     {
-        rb = GetComponent<Rigidbody>();
         StartCoroutine(DieCoroutine());
         ps.Stop();
 
+        transform.localPosition = defaultPosition;
+
         for (int i = 0; i < hardpoints.Length; i++)
         {
-            Instantiate(guns[Random.Range(0, guns.Length)], hardpoints[i].transform);
+            GameObject gun = Instantiate(guns[Random.Range(0, guns.Length)], hardpoints[i].transform);
+            Physics.IgnoreCollision(towerPivot.transform.GetChild(0).GetComponent<Collider>(), gun.transform.GetChild(0).GetComponent<Collider>());
         }
+
+        Physics.IgnoreCollision(transform.GetChild(0).GetComponent<Collider>(), towerPivot.transform.GetChild(0).GetComponent<Collider>());
     }
 
     void FixedUpdate()
     {
+        transform.localPosition = defaultPosition;
         towerPivot.transform.localEulerAngles = new Vector3(towerPivot.transform.localEulerAngles.x, transform.localEulerAngles.y, towerPivot.transform.localEulerAngles.z);
 
         if (health <= 0)
@@ -57,13 +61,16 @@ public class Tower : Entity
         }
         SetGunFiring(true);
 
-        rb.MoveRotation(Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dirToTarget, towerBase.transform.up), smoothness));
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dirToTarget, towerBase.transform.up), smoothness);
     }
 
     private void SetGunFiring(bool fire)
     {
         for (int i = 0; i < hardpoints.Length; i++)
-            hardpoints[i].transform.GetChild(0).gameObject.GetComponent<EntityGun>().CanFire = fire;
+        {
+            if (hardpoints[i] != null)
+                hardpoints[i].transform.GetChild(0).gameObject.GetComponent<EntityGun>().CanFire = fire;
+        }
     }
 
     IEnumerator DieCoroutine()

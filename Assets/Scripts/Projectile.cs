@@ -7,6 +7,8 @@ public class Projectile : MonoBehaviour
     public float Damage { get; set; }
     public bool isFriendly;
 
+    public LayerMask layerMask;
+
     void Awake()
     {
         if (!isFriendly)

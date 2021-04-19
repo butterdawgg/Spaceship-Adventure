@@ -21,11 +21,4 @@ public class EntityGun : Gun
         yield return null;
         StartCoroutine(FireCoroutine());
     }
-
-    public void Fire()
-    {
-        GameObject projectile = Instantiate(projectilePrototype, muzzlePoint.transform.position, transform.rotation);
-        projectile.GetComponent<Projectile>().Damage = damage;
-        projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileSpeed;
-    }
 }

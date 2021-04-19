@@ -4,6 +4,8 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    public LayerMask layerMask;
+
     //Public variables:
     public ParticleSystem ps;
     public GameObject render;
@@ -45,6 +47,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
+
+
         staticHealth = health;
         position = transform.position;
 

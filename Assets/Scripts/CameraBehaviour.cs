@@ -19,15 +19,15 @@ public class CameraBehaviour : MonoBehaviour
     {
         if(Player.Health > 0)
         {
-            Quaternion rot0 = Quaternion.Euler(20f, 0f, 0f);
-            Quaternion rot1 = Quaternion.Euler(20f, 0f, -angle);
-            Quaternion rot2 = Quaternion.Euler(20f, 0f, angle);
+            Quaternion rot0 = Quaternion.Euler(15f, 0f, 0f);
+            Quaternion rot1 = Quaternion.Euler(15f, 0f, -angle);
+            Quaternion rot2 = Quaternion.Euler(15f, 0f, angle);
 
-            Vector3 pos0 = new Vector3(0f, 3f, -4f);
-            Vector3 pos1 = new Vector3(0f, 2f, -4f);
-            Vector3 pos2 = new Vector3(0f, 4f, -4f);
-            Vector3 pos3 = new Vector3(-1f, 3f, -4f);
-            Vector3 pos4 = new Vector3(1f, 3f, -4f);
+            Vector3 pos0 = new Vector3(0f, 3f, -10f);
+            Vector3 pos1 = new Vector3(0f, 2f, -10f);
+            Vector3 pos2 = new Vector3(0f, 4f, -10f);
+            Vector3 pos3 = new Vector3(-1f, 3f, -10f);
+            Vector3 pos4 = new Vector3(1f, 3f, -10f);
             Vector3 currentPos = shipCamera.transform.localPosition;
 
 
@@ -55,31 +55,24 @@ public class CameraBehaviour : MonoBehaviour
 
 
             if (Input.GetKey(KeyCode.Space))
-            {
                 currentPos.y = Mathf.Lerp(currentPos.y, pos1.y, smoothness * Time.deltaTime);
-                shipCamera.transform.localPosition = currentPos;
-            }
+
             else if (Input.GetKey(KeyCode.LeftShift))
-            {
                 currentPos.y = Mathf.Lerp(currentPos.y, pos2.y, smoothness * Time.deltaTime);
-                shipCamera.transform.localPosition = currentPos;
-            }
+
             else if (Input.GetKey(KeyCode.Q))
-            {
                 currentPos.x = Mathf.Lerp(currentPos.x, pos4.x, smoothness * Time.deltaTime);
-                shipCamera.transform.localPosition = currentPos;
-            }
+
             else if (Input.GetKey(KeyCode.E))
-            {
                 currentPos.x = Mathf.Lerp(currentPos.x, pos3.x, smoothness * Time.deltaTime);
-                shipCamera.transform.localPosition = currentPos;
-            }
+
             else
             {
                 currentPos.x = Mathf.Lerp(currentPos.x, pos0.x, smoothness * Time.deltaTime);
                 currentPos.y = Mathf.Lerp(currentPos.y, pos0.y, smoothness * Time.deltaTime);
-                shipCamera.transform.localPosition = currentPos;
             }
+
+            shipCamera.transform.localPosition = currentPos;
         }
     }
 }

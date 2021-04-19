@@ -9,7 +9,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1165061094400315675}
-  - component: {fileID: 3280392650071968095}
   - component: {fileID: 6603866662719006575}
   - component: {fileID: 2229109298128935729}
   m_Layer: 9
@@ -26,7 +25,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832648866962080642}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 4.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -36,22 +35,6 @@ Transform:
   m_Father: {fileID: 3217675226594699356}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!54 &3280392650071968095
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1832648866962080642}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 1
-  m_AngularDrag: 1
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!65 &6603866662719006575
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -79,7 +62,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 500
   healthBar: {fileID: 8608928220408560408}
-  healthBarScale: 0.01
+  healthBarScale: 0.033
   body: {fileID: 8989664674307078090}
   ps: {fileID: 9172054908159923144}
   scoreGetAmount: 20
@@ -92,6 +75,7 @@ MonoBehaviour:
   smoothness: 3
   towerPivot: {fileID: 7389364761301751341}
   towerBase: {fileID: 5058164521502593125}
+  defaultPosition: {x: 0, y: 4.29, z: 0}
 --- !u!1 &2906018520986124486
 GameObject:
   m_ObjectHideFlags: 0
@@ -4801,8 +4785,8 @@ ParticleSystemRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 8b518d0c507a1e14bb32976dc388d7db, type: 2}
-  - {fileID: 2100000, guid: 8b518d0c507a1e14bb32976dc388d7db, type: 2}
+  - {fileID: 2100000, guid: f62b4465998a8be44aa65f7af969e0ae, type: 2}
+  - {fileID: 2100000, guid: f62b4465998a8be44aa65f7af969e0ae, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -4871,7 +4855,7 @@ Transform:
   m_GameObject: {fileID: 3478546233591672549}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 1165061094400315675}
   - {fileID: 5506164568817861914}
@@ -4966,7 +4950,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 35a2e844bb0b4cb4a99dda4305c4f337, type: 3}
 --- !u!1 &8608928220408560408
@@ -4993,7 +4977,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8608928220408560408}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 10.49, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -5050,7 +5034,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!64 &182505047669079827
+--- !u!64 &3951740092311266444
 MeshCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -5061,7 +5045,7 @@ MeshCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 4
-  m_Convex: 1
+  m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: -2432090755550338912, guid: 618e89696d95af24e88464d896fb6c41, type: 3}
 --- !u!1001 &5400761554082229556
@@ -5180,7 +5164,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 35a2e844bb0b4cb4a99dda4305c4f337,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 35a2e844bb0b4cb4a99dda4305c4f337,
         type: 3}
@@ -5190,7 +5174,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 35a2e844bb0b4cb4a99dda4305c4f337,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 35a2e844bb0b4cb4a99dda4305c4f337,
         type: 3}
