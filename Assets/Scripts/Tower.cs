@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Tower : Entity
 {
-    //Public variables:
+    //Public fields:
     public float radius;
     public float smoothness;
     public GameObject towerPivot;
@@ -22,20 +22,24 @@ public class Tower : Entity
         for (int i = 0; i < hardpoints.Length; i++)
         {
             GameObject gun = Instantiate(guns[Random.Range(0, guns.Length)], hardpoints[i].transform);
-            Physics.IgnoreCollision(towerPivot.transform.GetChild(0).GetComponent<Collider>(), gun.transform.GetChild(0).GetComponent<Collider>());
+            Physics.IgnoreCollision(towerPivot.transform.GetChild(0).GetComponent<Collider>(), 
+                                    gun.transform.GetChild(0).GetComponent<Collider>());
         }
 
-        Physics.IgnoreCollision(transform.GetChild(0).GetComponent<Collider>(), towerPivot.transform.GetChild(0).GetComponent<Collider>());
+        Physics.IgnoreCollision(transform.GetChild(0).GetComponent<Collider>(), 
+                                towerPivot.transform.GetChild(0).GetComponent<Collider>());
     }
 
     void FixedUpdate()
     {
         transform.localPosition = defaultPosition;
-        towerPivot.transform.localEulerAngles = new Vector3(towerPivot.transform.localEulerAngles.x, transform.localEulerAngles.y, towerPivot.transform.localEulerAngles.z);
+        towerPivot.transform.localEulerAngles = new Vector3(towerPivot.transform.localEulerAngles.x, 
+                                                            transform.localEulerAngles.y, 
+                                                            towerPivot.transform.localEulerAngles.z);
 
         if (health <= 0)
         {
-            SetGunFiring(false);
+            SetGunsFiring(false);
             return;
         }
         
@@ -56,21 +60,19 @@ public class Tower : Entity
          
         if (distance > radius)
         {
-            SetGunFiring(false);
+            SetGunsFiring(false);
             return;
         }
-        SetGunFiring(true);
 
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dirToTarget, towerBase.transform.up), smoothness);
-    }
+        SetGunsFiring(true);
 
-    private void SetGunFiring(bool fire)
-    {
-        for (int i = 0; i < hardpoints.Length; i++)
-        {
-            if (hardpoints[i] != null)
-                hardpoints[i].transform.GetChild(0).gameObject.GetComponent<EntityGun>().CanFire = fire;
-        }
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, 
+                                                      Quaternion.LookRotation(dirToTarget, towerBase.transform.up), 
+                                                      smoothness);
+
+        Vector3 rot = transform.localEulerAngles;
+        if (rot.x > 30f & rot.x < 50f)
+            transform.localRotation = Quaternion.Euler(30f, rot.y, rot.z);
     }
 
     IEnumerator DieCoroutine()

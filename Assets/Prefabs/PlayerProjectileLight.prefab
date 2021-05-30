@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1844461980241887247}
   - component: {fileID: 3939493471683151877}
   m_Layer: 10
-  m_Name: PlayerProjectile
+  m_Name: PlayerProjectileLight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 304391207230958630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.1, y: 0.1, z: 0.1}
+  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
   m_Children:
   - {fileID: 8223423526442447779}
   - {fileID: 6590282126184642560}
@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 805cdff2949f19a46b98a529f4c09267, type: 2}
+  - {fileID: 2100000, guid: c760682cf8db6e546ac07909c1833748, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -125,7 +125,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdcc85fef01d87e4d8099cb2b0c24085, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  isFriendly: 1
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!1 &691026064407856616
 GameObject:
   m_ObjectHideFlags: 0
@@ -176,7 +178,7 @@ TrailRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 805cdff2949f19a46b98a529f4c09267, type: 2}
+  - {fileID: 2100000, guid: c760682cf8db6e546ac07909c1833748, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

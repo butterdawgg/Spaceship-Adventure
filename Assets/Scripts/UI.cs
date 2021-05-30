@@ -10,11 +10,8 @@ public class UI : MonoBehaviour
     public Text healthTxt;
     public Text scoreTxt;
     public Text highScoreTxt;
-    public static float highScore;
     public static bool pause = false;
     public GameObject pauseMenu;
-
-    public static void SetHighScore(float setHighScore) { highScore = setHighScore; }
 
     void Start()
     {
@@ -23,8 +20,8 @@ public class UI : MonoBehaviour
 
     void Update()
     {
-        scoreTxt.text = "" + Player.Score;
-        //highScoreTxt.text = "" + highScore;
+        scoreTxt.text = Player.Score.ToString();
+        highScoreTxt.text = Player.HighScore.ToString();
 
         if (Player.Health <= 0)
         {
@@ -33,7 +30,7 @@ public class UI : MonoBehaviour
         }
         else
         {
-            healthTxt.text = "" + Player.Health;
+            healthTxt.text = Player.Health.ToString();
             img.transform.localScale = new Vector3(Player.Health * scale, 1f, 1f);
         }
 

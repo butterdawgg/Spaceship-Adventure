@@ -4,14 +4,15 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    //Public variables:
+    //Public fields:
     public float maxSpeed;
     public float rotationSpeed;
     public float stopRadius;
     public float shootRadius;
     public float goRadius;
 
-    //Private variables:
+
+    //Private fields:
     private Rigidbody rb;
     Vector3 dirToTarget;
 
@@ -31,7 +32,7 @@ public class Enemy : Entity
     {
         if (health <= 0)
         {
-            SetGunFiring(false);
+            SetGunsFiring(false);
             return;
         }
 
@@ -53,22 +54,22 @@ public class Enemy : Entity
         {
             Rotate();
             Move();
-            SetGunFiring(false);
+            SetGunsFiring(false);
         }
         else if (distance < goRadius & distance < shootRadius & distance > stopRadius)
         {
             Rotate();
             Move();
-            SetGunFiring(true);
+            SetGunsFiring(true);
         }
         else if (distance < goRadius & distance < shootRadius & distance < stopRadius)
         {
             Rotate();
-            SetGunFiring(true);
+            SetGunsFiring(true);
         }
         else
         {
-            SetGunFiring(false);
+            SetGunsFiring(false);
             return;
         }
     }
@@ -79,19 +80,9 @@ public class Enemy : Entity
     }
 
     private void Rotate()
-
     {
         Quaternion orientation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(dirToTarget), rotationSpeed);
         rb.MoveRotation(orientation);
-    }
-
-    private void SetGunFiring(bool fire)
-    {
-        for (int i = 0; i < hardpoints.Length; i++)
-        {
-            if (hardpoints[i] != null)
-                hardpoints[i].transform.GetChild(0).gameObject.GetComponent<EntityGun>().CanFire = fire;
-        }
     }
 
     IEnumerator DieCoroutine()

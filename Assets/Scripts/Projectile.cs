@@ -5,13 +5,13 @@ using UnityEngine;
 public class Projectile : MonoBehaviour
 {
     public float Damage { get; set; }
-    public bool isFriendly;
+    public bool IsFriendly { get; set; }
 
     public LayerMask layerMask;
 
     void Awake()
     {
-        if (!isFriendly)
+        if (!IsFriendly)
         {
             Vector3 initialForward = transform.forward;
             transform.LookAt(Player.Position);
@@ -23,11 +23,11 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent<Entity>(out Entity entity) == true & isFriendly)
+        if (other.gameObject.TryGetComponent<Entity>(out Entity entity) == true & IsFriendly)
         {
             entity.health -= Damage;
         }
-        else if (other.gameObject.TryGetComponent<Player>(out Player player) == true & !isFriendly)
+        else if (other.gameObject.TryGetComponent<Player>(out Player player) == true & !IsFriendly)
         {
             player.health -= Damage;
         }

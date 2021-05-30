@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1165061094400315675}
   - component: {fileID: 6603866662719006575}
   - component: {fileID: 2229109298128935729}
+  - component: {fileID: 8609651047766764555}
   m_Layer: 9
   m_Name: Tower
   m_TagString: Untagged
@@ -25,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1832648866962080642}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 4.29, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -76,6 +77,25 @@ MonoBehaviour:
   towerPivot: {fileID: 7389364761301751341}
   towerBase: {fileID: 5058164521502593125}
   defaultPosition: {x: 0, y: 4.29, z: 0}
+--- !u!1818360609 &8609651047766764555
+RotationConstraint:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1832648866962080642}
+  m_Enabled: 1
+  m_Weight: 1
+  m_RotationAtRest: {x: 0, y: 0, z: 0}
+  m_RotationOffset: {x: 0, y: 0, z: 0}
+  m_AffectRotationX: 1
+  m_AffectRotationY: 1
+  m_AffectRotationZ: 1
+  m_IsContraintActive: 1
+  m_IsLocked: 1
+  m_Sources:
+  - sourceTransform: {fileID: 1165061094400315675}
+    weight: 1
 --- !u!1 &2906018520986124486
 GameObject:
   m_ObjectHideFlags: 0
@@ -4917,6 +4937,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1169752674955424345}
+  - component: {fileID: 5764680586761325879}
   m_Layer: 12
   m_Name: tower_pivot
   m_TagString: Untagged
@@ -4939,6 +4960,19 @@ Transform:
   m_Father: {fileID: 3217675226594699356}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &5764680586761325879
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7389364761301751341}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 4.136431, y: 0.3487215, z: 0.9999981}
+  m_Center: {x: -0.008569002, y: 0.9597821, z: 2.5537062}
 --- !u!64 &4692772739950671143
 MeshCollider:
   m_ObjectHideFlags: 0

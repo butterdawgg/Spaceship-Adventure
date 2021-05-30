@@ -1,0 +1,57 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class PlayerLaserGun : Gun
+{
+    public int fireButtonIndex;
+    public float rayDuration;
+    public Transform rayEndPoint;
+
+    private LineRenderer lr;
+    private Collider hitCollider;
+
+    void Awake()
+    {
+        lr = GetComponent<LineRenderer>();
+        StartCoroutine(FireCoroutine());
+    }
+
+    void LateUpdate()
+    {
+        Ray ray = new Ray(muzzlePoint.position, muzzlePoint.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, 1000f))
+        {
+            rayEndPoint.localPosition = new Vector3(0f, 0f, hit.distance);
+            hitCollider = hit.collider;
+        }
+        else
+            rayEndPoint.localPosition = new Vector3(0f, 0f, 1000f);
+
+        lr.SetPosition(0, muzzlePoint.position);
+        lr.SetPosition(1, rayEndPoint.position);
+    }
+
+    private IEnumerator FireCoroutine()
+    {
+        if (Input.GetMouseButton(fireButtonIndex))
+        {
+            if(hitCollider != null)
+            {
+                if (hitCollider.gameObject.TryGetComponent<Entity>(out Entity entity))
+                    entity.health -= damage;
+            }
+
+            lr.forceRenderingOff = false;
+
+            yield return new WaitForSeconds(rayDuration);
+
+            lr.forceRenderingOff = true;
+
+            yield return new WaitForSeconds(cooldown);
+        }
+
+        yield return null;
+        StartCoroutine(FireCoroutine());
+    }    
+}

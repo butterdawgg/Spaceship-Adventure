@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EntityGun : Gun
+public class PlayerProjectileGun : Gun
 {
-    public bool CanFire { get; set; }
+    public int fireButtonIndex;
     public GameObject projectilePrototype;
     public float projectileSpeed;
 
@@ -18,15 +18,15 @@ public class EntityGun : Gun
         GameObject projectile = Instantiate(projectilePrototype, muzzlePoint.transform.position, transform.rotation);
         projectile.GetComponent<Projectile>().Damage = damage;
         projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileSpeed;
-        projectile.GetComponent<Projectile>().IsFriendly = false;
+        projectile.GetComponent<Projectile>().IsFriendly = true;
     }
 
     private IEnumerator FireCoroutine()
     {
-        if (CanFire)
+        if (Input.GetMouseButton(fireButtonIndex))
         {
             Fire();
-            yield return new WaitForSeconds(cooldown);
+            yield return new WaitForSeconds(cooldown);    
         }
         yield return null;
         StartCoroutine(FireCoroutine());

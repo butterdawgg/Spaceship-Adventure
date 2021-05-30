@@ -14,4 +14,13 @@ public class Entity : MonoBehaviour
 
     public GameObject[] hardpoints;
     public GameObject[] guns;
+
+    protected void SetGunsFiring(bool fire)
+    {
+        for (int i = 0; i < hardpoints.Length; i++)
+        {
+            if (hardpoints[i] != null)
+                hardpoints[i].transform.GetChild(0).gameObject.GetComponent<EntityGun>().CanFire = fire;
+        }
+    }
 }

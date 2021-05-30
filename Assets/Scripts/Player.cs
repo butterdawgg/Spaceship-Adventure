@@ -4,9 +4,7 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
-    public LayerMask layerMask;
-
-    //Public variables:
+    //Public fields:
     public ParticleSystem ps;
     public GameObject render;
     public float health;
@@ -20,21 +18,19 @@ public class Player : MonoBehaviour
 
 
     //Public properties:
-    public static float Health { get { return staticHealth; } }
-    public static Vector3 Position { get { return position; } }
+    public static float Health { get; private set; }
+    public static Vector3 Position { get; private set; }
     public static float Score { get; set; }
+    public static float HighScore { get; set; }
 
     
-    //Private variables:
+    //Private fields:
     private Rigidbody rb;
 
     private float activeForwardSpeed, activeStrafeSpeed, activeHoverSpeed;
 
     private Vector2 lookInput, screenCenter, mouseDistance;
     private float rollInput;
-
-    private static float staticHealth;
-    private static Vector3 position;
 
     void Start()
     {
@@ -47,10 +43,8 @@ public class Player : MonoBehaviour
 
     void FixedUpdate()
     {
-
-
-        staticHealth = health;
-        position = transform.position;
+        Health = health;
+        Position = transform.position;
 
         if (health <= 0)
             return;
@@ -111,8 +105,8 @@ public class Player : MonoBehaviour
             for (int i = 0; i < hardpoints.Length; i++)
                 Destroy(hardpoints[i]);
             yield return new WaitForSeconds(2f);
-            if (UI.highScore < Score)
-                UI.SetHighScore(Score);
+            if (HighScore < Score)
+                HighScore = Score;
             Score = 0f;
             SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
