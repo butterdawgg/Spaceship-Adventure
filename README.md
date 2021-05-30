@@ -7,3 +7,4 @@ Source code of *Holydoggo/Spaceship*
 - major bugfixes
 - major optimization
 - created new repository for build
+- added lasers
