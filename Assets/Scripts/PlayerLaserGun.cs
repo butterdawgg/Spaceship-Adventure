@@ -14,7 +14,12 @@ public class PlayerLaserGun : Gun
     void Awake()
     {
         lr = GetComponent<LineRenderer>();
-        StartCoroutine(FireCoroutine());
+        lr.forceRenderingOff = true;
+
+        if (cooldown <= 0 || rayDuration <= 0)
+            StartCoroutine(BeamFireCoroutine());
+        else
+            StartCoroutine(PulseFireCoroutine());
     }
 
     void LateUpdate()
@@ -32,7 +37,7 @@ public class PlayerLaserGun : Gun
         lr.SetPosition(1, rayEndPoint.position);
     }
 
-    private IEnumerator FireCoroutine()
+    private IEnumerator PulseFireCoroutine()
     {
         if (Input.GetMouseButton(fireButtonIndex))
         {
@@ -52,6 +57,27 @@ public class PlayerLaserGun : Gun
         }
 
         yield return null;
-        StartCoroutine(FireCoroutine());
+        StartCoroutine(PulseFireCoroutine());
     }    
+
+    private IEnumerator BeamFireCoroutine()
+    {
+        if (Input.GetMouseButton(fireButtonIndex))
+        {
+            if (hitCollider != null)
+            {
+                if (hitCollider.gameObject.TryGetComponent<Entity>(out Entity entity))
+                    entity.health -= damage * 0.05f;
+            }
+
+            lr.forceRenderingOff = false;
+
+            yield return new WaitForSeconds(0.05f);
+        }
+        else
+            lr.forceRenderingOff = true;
+
+        yield return null;
+        StartCoroutine(BeamFireCoroutine());
+    }
 }
