@@ -96,6 +96,16 @@ public class Player : MonoBehaviour
         rb.AddForce(transform.up * activeHoverSpeed);
     }
 
+    private void OnCollisionEnter(Collision other)
+    {
+        if(other.collider.tag == "powerCell")
+        {
+            health += 50f;
+            Destroy(other.gameObject);
+            
+        }
+    }
+
     IEnumerator DieCoroutine()
     {
         if (health <= 0)

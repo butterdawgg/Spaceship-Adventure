@@ -10,6 +10,7 @@ public class Enemy : Entity
     public float stopRadius;
     public float shootRadius;
     public float goRadius;
+    public GameObject drop;
 
 
     //Private fields:
@@ -89,6 +90,7 @@ public class Enemy : Entity
     {
         if (health <= 0)
         {
+            GameObject dropSpawn = Instantiate(drop, transform.position, transform.rotation);
             ps.Play();
             Player.Score += scoreGetAmount;
             Destroy(healthBar);
@@ -97,6 +99,7 @@ public class Enemy : Entity
                 Destroy(hardpoints[i]);
             yield return new WaitForSeconds(0.5f);
             Destroy(gameObject);
+            
         }
         yield return null;
         StartCoroutine(DieCoroutine());

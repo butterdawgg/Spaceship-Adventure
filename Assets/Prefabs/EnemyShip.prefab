@@ -4956,6 +4956,7 @@ MonoBehaviour:
   stopRadius: 45
   shootRadius: 75
   goRadius: 100
+  drop: {fileID: 2716922838176555725, guid: 1b0f1959aef62134d81f8afb29a503b4, type: 3}
 --- !u!65 &9034621682323939069
 BoxCollider:
   m_ObjectHideFlags: 0
