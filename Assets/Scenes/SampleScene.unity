@@ -172,7 +172,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 500
-  amount: 150
+  amount: 75
   prototype: {fileID: 1236174946438906248, guid: 3e75a66655ec3dd408429c2187db1a16,
     type: 3}
 --- !u!1001 &42287853
@@ -825,7 +825,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 500
-  amount: 100
+  amount: 50
   prototype: {fileID: 1236174946438906248, guid: f781e80cfe7633e43b58cff2e0117998,
     type: 3}
 --- !u!4 &264688981 stripped
@@ -1763,7 +1763,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &618278968
 Transform:
   m_ObjectHideFlags: 0
@@ -2078,7 +2078,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 500
-  amount: 50
+  amount: 25
   prototype: {fileID: 1236174946438906248, guid: a08a4f35f1566004fa2698fef2cbafaf,
     type: 3}
 --- !u!1001 &711049604
@@ -3228,7 +3228,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 500
-  amount: 150
+  amount: 75
   prototype: {fileID: 1236174946438906248, guid: 7127d2f9f4ff1664c8ba2ac16f13a76d,
     type: 3}
 --- !u!4 &1115234385 stripped
@@ -4034,7 +4034,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 500
-  amount: 50
+  amount: 25
   prototype: {fileID: 1236174946438906248, guid: e0998f0587b3aee42a38b620f481b426,
     type: 3}
 --- !u!4 &1332407140 stripped
@@ -4990,7 +4990,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   range: 500
-  amount: 100
+  amount: 50
   prototype: {fileID: 1236174946438906248, guid: b8c38ab676c610f42804ce2afc90b278,
     type: 3}
 --- !u!4 &1578804570 stripped
@@ -6346,7 +6346,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &2014190388
 Transform:
   m_ObjectHideFlags: 0
