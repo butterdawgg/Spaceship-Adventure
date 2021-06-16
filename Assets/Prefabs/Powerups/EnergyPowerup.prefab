@@ -278,7 +278,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pickableType: 1
-  amount: 20
+  amount: 10
   pickupDistance: 5
   pickupVelocity: 20
 --- !u!54 &6164984648557815775

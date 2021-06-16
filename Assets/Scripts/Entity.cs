@@ -31,9 +31,9 @@ public class Entity : MonoBehaviour
 
         for (int i = 0; i < random; i++)
         {
-            Vector3 pos = new Vector3(transform.position.x + Random.Range(-1f, 1f),
-                                      transform.position.y + Random.Range(-1f, 1f),
-                                      transform.position.z + Random.Range(-1f, 1f));
+            Vector3 pos = new Vector3(transform.position.x + Random.Range(-2f, 2f),
+                                      transform.position.y + Random.Range(-2f, 2f),
+                                      transform.position.z + Random.Range(-2f, 2f));
 
             Instantiate(drop, pos, transform.rotation);
         }

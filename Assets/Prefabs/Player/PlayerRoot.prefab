@@ -20348,7 +20348,7 @@ PrefabInstance:
     - target: {fileID: 1396008782876690460, guid: c104ab1d512d77e4eb8276c46c59b980,
         type: 3}
       propertyPath: energyDraw
-      value: 5
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 1425311901576838369, guid: c104ab1d512d77e4eb8276c46c59b980,
         type: 3}
@@ -20478,7 +20478,7 @@ PrefabInstance:
     - target: {fileID: 2855951114143850203, guid: 61cd48690732c344fb0737911e5881c5,
         type: 3}
       propertyPath: energyDraw
-      value: 20
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5939570296947245577, guid: 61cd48690732c344fb0737911e5881c5,
         type: 3}
