@@ -86,6 +86,7 @@ public class Tower : Entity
             for (int i = 0; i < hardpoints.Length; i++)
                 Destroy(hardpoints[i]);
             yield return new WaitForSeconds(0.5f);
+            DropLoot();
             Destroy(gameObject);
         }
         yield return null;

@@ -19,11 +19,12 @@ public class PlayerProjectileGun : Gun
         projectile.GetComponent<Projectile>().Damage = damage;
         projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileSpeed;
         projectile.GetComponent<Projectile>().IsFriendly = true;
+        Player.Energy -= energyDraw;
     }
 
     private IEnumerator FireCoroutine()
     {
-        if (Input.GetMouseButton(fireButtonIndex))
+        if (Input.GetMouseButton(fireButtonIndex) & Player.Energy > 0)
         {
             Fire();
             yield return new WaitForSeconds(cooldown);    

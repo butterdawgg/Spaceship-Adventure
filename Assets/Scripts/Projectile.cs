@@ -29,7 +29,7 @@ public class Projectile : MonoBehaviour
         }
         else if (other.gameObject.TryGetComponent<Player>(out Player player) == true & !IsFriendly)
         {
-            player.health -= Damage;
+            Player.Health -= Damage;
         }
     }
 }

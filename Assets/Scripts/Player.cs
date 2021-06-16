@@ -7,7 +7,8 @@ public class Player : MonoBehaviour
     //Public fields:
     public ParticleSystem ps;
     public GameObject render;
-    public float health;
+    public float maxHealth;
+    public float maxEnergy;
 
     public float forwardSpeed, strafeSpeed, hoverSpeed;
     public float forwardAcceleration, strafeAcceleration, hoverAcceleration;
@@ -16,14 +17,20 @@ public class Player : MonoBehaviour
     public float rollSpeed, rollAcceleration;
     public GameObject[] hardpoints;
 
+    //{ get { return Energy; } set { if (value > 0) Energy = value; else Energy = 0; } }
 
     //Public properties:
-    public static float Health { get; private set; }
+    private static float _health;
+    private static float _energy;
+    private static float _score;
+    private static float _highScore;
+    public static float Health { get { return _health; } set { if (value > 0) _health = value; else _health = 0; } }
+    public static float Energy { get { return _energy; } set { if (value > 0) _energy = value; else _energy = 0; } }
+    public static float Score { get { return _score; } set { if (value > 0) _score = value; else _score = 0; } }
+    public static float HighScore { get { return _highScore; } set { if (value > 0) _highScore = value; else _highScore = 0; } }
     public static Vector3 Position { get; private set; }
-    public static float Score { get; set; }
-    public static float HighScore { get; set; }
 
-    
+
     //Private fields:
     private Rigidbody rb;
 
@@ -32,22 +39,28 @@ public class Player : MonoBehaviour
     private Vector2 lookInput, screenCenter, mouseDistance;
     private float rollInput;
 
-    void Start()
+    void Awake()
     {
+        Health = maxHealth;
+        Energy = maxEnergy;
+        ps.Stop();
         rb = GetComponent<Rigidbody>();
         screenCenter.x = Screen.width * 0.5f;
         screenCenter.y = Screen.height * 0.5f;
         StartCoroutine(DieCoroutine());
-        ps.Stop();
     }
 
     void FixedUpdate()
     {
-        Health = health;
         Position = transform.position;
 
-        if (health <= 0)
+        if (Energy > maxEnergy)
+            Energy = maxEnergy;
+
+        if (Health <= 0)
             return;
+        else if (Health > maxHealth)
+            Health = maxHealth;
 
         Rotate();
         Move();
@@ -96,19 +109,18 @@ public class Player : MonoBehaviour
         rb.AddForce(transform.up * activeHoverSpeed);
     }
 
-    private void OnCollisionEnter(Collision other)
+    private void OnTriggerEnter(Collider other)
     {
-        if(other.collider.tag == "powerCell")
+        if(other.tag == "powerCell")
         {
-            health += 50f;
+            Health += 50f;
             Destroy(other.gameObject);
-            
         }
     }
 
     IEnumerator DieCoroutine()
     {
-        if (health <= 0)
+        if (Health <= 0)
         {
             ps.Play();
             Destroy(render);

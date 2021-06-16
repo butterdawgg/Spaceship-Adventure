@@ -240,9 +240,13 @@ MonoBehaviour:
   muzzlePoint: {fileID: 4542669239021351476}
   damage: 50
   cooldown: 0.2
+  energyDraw: 0
   fireButtonIndex: 0
   rayDuration: 0.1
   rayEndPoint: {fileID: 2260185627959192396}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4097
 --- !u!120 &4666276994664086546
 LineRenderer:
   m_ObjectHideFlags: 0

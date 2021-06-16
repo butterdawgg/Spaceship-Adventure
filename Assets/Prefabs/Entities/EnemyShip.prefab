@@ -4951,12 +4951,12 @@ MonoBehaviour:
   guns:
   - {fileID: 5939570296947245577, guid: 4dd9fcc82cc9875439b3b0fcabc8abdd, type: 3}
   - {fileID: 5939570296947245577, guid: 3a110060ccc1f1940a73b213dda81ee5, type: 3}
+  drop: {fileID: 7396254203944592656, guid: 861dbba80d06f9a429c2498cf94886eb, type: 3}
   maxSpeed: 70
   rotationSpeed: 3
   stopRadius: 45
   shootRadius: 75
   goRadius: 100
-  drop: {fileID: 2716922838176555725, guid: 1b0f1959aef62134d81f8afb29a503b4, type: 3}
 --- !u!65 &9034621682323939069
 BoxCollider:
   m_ObjectHideFlags: 0
