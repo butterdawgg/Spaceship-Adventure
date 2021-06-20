@@ -4941,8 +4941,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 250
-  healthBar: {fileID: 599811673731680528}
-  healthBarScale: 0.01
+  healthBar:
+    bar: {fileID: 599811673731680528}
+    scale: 1.5
+    value: 0
+    distance: 0
+    radius: 0
+    direction: {x: 0, y: 0, z: 0}
+    vectorUp: {x: 0, y: 0, z: 0}
   body: {fileID: 3175957331826152382}
   ps: {fileID: 5443905348166023868}
   scoreGetAmount: 20
@@ -4951,12 +4957,17 @@ MonoBehaviour:
   guns:
   - {fileID: 5939570296947245577, guid: 4dd9fcc82cc9875439b3b0fcabc8abdd, type: 3}
   - {fileID: 5939570296947245577, guid: 3a110060ccc1f1940a73b213dda81ee5, type: 3}
-  drop: {fileID: 7396254203944592656, guid: 861dbba80d06f9a429c2498cf94886eb, type: 3}
+  drop:
+  - drop: {fileID: 7396254203944592656, guid: 861dbba80d06f9a429c2498cf94886eb, type: 3}
+    chance: {x: 2, y: 3}
+  - drop: {fileID: 7396254203944592656, guid: 8ea8e1a4a31adad4daae6dfa7bfffe40, type: 3}
+    chance: {x: -1, y: 1}
   maxSpeed: 70
   rotationSpeed: 3
   stopRadius: 45
   shootRadius: 75
   goRadius: 100
+  ps1: {fileID: 599811673522150847}
 --- !u!65 &9034621682323939069
 BoxCollider:
   m_ObjectHideFlags: 0

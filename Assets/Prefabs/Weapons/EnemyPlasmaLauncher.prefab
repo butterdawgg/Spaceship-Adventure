@@ -92,9 +92,10 @@ MonoBehaviour:
   muzzlePoint: {fileID: 4542669239021351476}
   damage: 5
   cooldown: 0.3
+  energyDraw: 0
   projectilePrototype: {fileID: 156316926240573107, guid: cdb7eba4100bef3498ce9ec63e690991,
     type: 3}
-  projectileSpeed: 100
+  projectileSpeed: 60
 --- !u!1001 &889283420010117945
 PrefabInstance:
   m_ObjectHideFlags: 0

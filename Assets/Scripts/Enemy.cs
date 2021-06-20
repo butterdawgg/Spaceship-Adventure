@@ -10,6 +10,7 @@ public class Enemy : Entity
     public float stopRadius;
     public float shootRadius;
     public float goRadius;
+    public ParticleSystem ps1;
 
 
     //Private fields:
@@ -26,6 +27,8 @@ public class Enemy : Entity
         {
             Instantiate(guns[Random.Range(0, guns.Length)], hardpoints[i].transform);
         }
+
+        healthBar.SetupK(health);
     }
 
     void FixedUpdate()
@@ -39,33 +42,32 @@ public class Enemy : Entity
         dirToTarget = (Player.Position - transform.position).normalized;
         float distance = (Player.Position - transform.position).magnitude;
 
-        if (distance > shootRadius | healthBar == null)
-        {
-            healthBar.SetActive(false);
-        }
-        if (distance < shootRadius & healthBar != null)
-        {
-            healthBar.SetActive(true);
-            healthBar.transform.rotation = Quaternion.LookRotation(dirToTarget, transform.up);
-            healthBar.transform.localScale = new Vector3(healthBarScale * health, healthBar.transform.localScale.y, 1f);
-        }
+        healthBar.Do(health, distance, shootRadius, dirToTarget, transform.up);
 
-        if (distance < goRadius & distance > shootRadius & distance > stopRadius)
+        if (Player.Health > 0)
         {
-            Rotate();
-            Move();
-            SetGunsFiring(false);
-        }
-        else if (distance < goRadius & distance < shootRadius & distance > stopRadius)
-        {
-            Rotate();
-            Move();
-            SetGunsFiring(true);
-        }
-        else if (distance < goRadius & distance < shootRadius & distance < stopRadius)
-        {
-            Rotate();
-            SetGunsFiring(true);
+            if (distance < goRadius & distance > shootRadius & distance > stopRadius)
+            {
+                Rotate();
+                Move();
+                SetGunsFiring(false);
+            }
+            else if (distance < goRadius & distance < shootRadius & distance > stopRadius)
+            {
+                Rotate();
+                Move();
+                SetGunsFiring(true);
+            }
+            else if (distance < goRadius & distance < shootRadius & distance < stopRadius)
+            {
+                Rotate();
+                SetGunsFiring(true);
+            }
+            else
+            {
+                SetGunsFiring(false);
+                return;
+            }
         }
         else
         {
@@ -91,8 +93,10 @@ public class Enemy : Entity
         {
             ps.Play();
             Player.Score += scoreGetAmount;
-            Destroy(healthBar);
             Destroy(body);
+            Destroy(ps1.gameObject);
+            healthBar.Destroy();
+            FindObjectOfType<AudioManager>().PlaySound("Explosion");
             for (int i = 0; i < hardpoints.Length; i++)
                 Destroy(hardpoints[i]);
             yield return new WaitForSeconds(0.5f);

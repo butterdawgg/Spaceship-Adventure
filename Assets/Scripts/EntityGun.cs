@@ -19,11 +19,13 @@ public class EntityGun : Gun
         projectile.GetComponent<Projectile>().Damage = damage;
         projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileSpeed;
         projectile.GetComponent<Projectile>().IsFriendly = false;
+
+        FindObjectOfType<AudioManager>().PlaySound("EnemyFire");
     }
 
     private IEnumerator FireCoroutine()
     {
-        if (CanFire)
+        if (CanFire & !UI.IsPaused)
         {
             Fire();
             yield return new WaitForSeconds(cooldown);

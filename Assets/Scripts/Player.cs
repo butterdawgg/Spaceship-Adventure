@@ -17,13 +17,8 @@ public class Player : MonoBehaviour
     public float rollSpeed, rollAcceleration;
     public GameObject[] hardpoints;
 
-    //{ get { return Energy; } set { if (value > 0) Energy = value; else Energy = 0; } }
 
     //Public properties:
-    private static float _health;
-    private static float _energy;
-    private static float _score;
-    private static float _highScore;
     public static float Health { get { return _health; } set { if (value > 0) _health = value; else _health = 0; } }
     public static float Energy { get { return _energy; } set { if (value > 0) _energy = value; else _energy = 0; } }
     public static float Score { get { return _score; } set { if (value > 0) _score = value; else _score = 0; } }
@@ -39,10 +34,16 @@ public class Player : MonoBehaviour
     private Vector2 lookInput, screenCenter, mouseDistance;
     private float rollInput;
 
+    private static float _health;
+    private static float _energy;
+    private static float _score;
+    private static float _highScore;
+
     void Awake()
     {
         Health = maxHealth;
         Energy = maxEnergy;
+        HighScore = PlayerPrefs.GetFloat("HighScore");
         ps.Stop();
         rb = GetComponent<Rigidbody>();
         screenCenter.x = Screen.width * 0.5f;
@@ -126,6 +127,7 @@ public class Player : MonoBehaviour
             Destroy(render);
             for (int i = 0; i < hardpoints.Length; i++)
                 Destroy(hardpoints[i]);
+            FindObjectOfType<AudioManager>().PlaySound("Explosion");
             yield return new WaitForSeconds(2f);
             if (HighScore < Score)
                 HighScore = Score;
@@ -134,5 +136,16 @@ public class Player : MonoBehaviour
         }
         yield return null;
         StartCoroutine(DieCoroutine());
+    }
+
+    public void ResetHighScore()
+    {
+        HighScore = 0f;
+        PlayerPrefs.SetFloat("HighScore", HighScore);
+    }
+
+    void OnDisable()
+    {
+        PlayerPrefs.SetFloat("HighScore", HighScore);
     }
 }

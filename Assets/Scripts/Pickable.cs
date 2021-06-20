@@ -40,6 +40,8 @@ public class Pickable : MonoBehaviour
         else if (pickableType == PickableType.Energy)
             Player.Energy += amount;
 
+        FindObjectOfType<AudioManager>().PlaySound("Pickup");
+
         Destroy(gameObject);
     }
 }

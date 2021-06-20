@@ -20340,16 +20340,6 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 11
       objectReference: {fileID: 0}
-    - target: {fileID: 1396008782876690460, guid: c104ab1d512d77e4eb8276c46c59b980,
-        type: 3}
-      propertyPath: fireButtonIndex
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1396008782876690460, guid: c104ab1d512d77e4eb8276c46c59b980,
-        type: 3}
-      propertyPath: energyDraw
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 1425311901576838369, guid: c104ab1d512d77e4eb8276c46c59b980,
         type: 3}
       propertyPath: m_Layer
@@ -20460,26 +20450,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6424172090358178578}
     m_Modifications:
-    - target: {fileID: 2855951114143850203, guid: 61cd48690732c344fb0737911e5881c5,
-        type: 3}
-      propertyPath: cooldown
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2855951114143850203, guid: 61cd48690732c344fb0737911e5881c5,
-        type: 3}
-      propertyPath: rayDuration
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2855951114143850203, guid: 61cd48690732c344fb0737911e5881c5,
-        type: 3}
-      propertyPath: damage
-      value: 200
-      objectReference: {fileID: 0}
-    - target: {fileID: 2855951114143850203, guid: 61cd48690732c344fb0737911e5881c5,
-        type: 3}
-      propertyPath: energyDraw
-      value: 10
-      objectReference: {fileID: 0}
     - target: {fileID: 5939570296947245577, guid: 61cd48690732c344fb0737911e5881c5,
         type: 3}
       propertyPath: m_Name

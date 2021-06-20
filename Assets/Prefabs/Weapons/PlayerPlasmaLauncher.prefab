@@ -206,10 +206,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzlePoint: {fileID: 4542669239021351476}
-  damage: 20
+  damage: 30
   cooldown: 0.1
-  energyDraw: 0
-  fireButtonIndex: 0
+  energyDraw: 1
+  fireButtonIndex: 1
   projectilePrototype: {fileID: 304391207230958630, guid: ba99a98d46e34c548a42d4f403b8d614,
     type: 3}
   projectileSpeed: 300

@@ -40,17 +40,22 @@ public class PlayerLaserGun : Gun
 
     private IEnumerator PulseFireCoroutine()
     {
-        if (Input.GetMouseButton(fireButtonIndex) & Player.Energy > 0)
+        if (Input.GetMouseButton(fireButtonIndex) & Player.Energy > 0 & !UI.IsPaused)
         {
             if(hitCollider != null)
             {
                 if (hitCollider.gameObject.TryGetComponent<Entity>(out Entity entity))
+                {
                     entity.health -= damage;
+                    FindObjectOfType<AudioManager>().PlaySound("EnemyHit");
+                }
             }
 
             lr.forceRenderingOff = false;
 
             Player.Energy -= energyDraw;
+
+            FindObjectOfType<AudioManager>().PlaySound("PlayerFireLaser");
 
             yield return new WaitForSeconds(rayDuration);
 
@@ -65,7 +70,7 @@ public class PlayerLaserGun : Gun
 
     private IEnumerator BeamFireCoroutine()
     {
-        if (Input.GetMouseButton(fireButtonIndex) & Player.Energy > 0)
+        if (Input.GetMouseButton(fireButtonIndex) & Player.Energy > 0 & !UI.IsPaused)
         {
             if (hitCollider != null)
             {

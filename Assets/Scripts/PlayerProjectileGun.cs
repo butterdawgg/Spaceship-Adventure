@@ -20,11 +20,12 @@ public class PlayerProjectileGun : Gun
         projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileSpeed;
         projectile.GetComponent<Projectile>().IsFriendly = true;
         Player.Energy -= energyDraw;
+        FindObjectOfType<AudioManager>().PlaySound("PlayerFireProjectile");
     }
 
     private IEnumerator FireCoroutine()
     {
-        if (Input.GetMouseButton(fireButtonIndex) & Player.Energy > 0)
+        if (Input.GetMouseButton(fireButtonIndex) & Player.Energy > 0 & !UI.IsPaused)
         {
             Fire();
             yield return new WaitForSeconds(cooldown);    

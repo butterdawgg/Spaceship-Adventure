@@ -5,8 +5,7 @@ using UnityEngine;
 public class Entity : MonoBehaviour
 {
     public float health = 200;
-    public GameObject healthBar;
-    public float healthBarScale;
+    public HealthBar healthBar;
 
     public GameObject body;
     public ParticleSystem ps;
@@ -14,7 +13,7 @@ public class Entity : MonoBehaviour
 
     public GameObject[] hardpoints;
     public GameObject[] guns;
-    public GameObject drop;
+    public Drop[] drop;
 
     protected void SetGunsFiring(bool fire)
     {
@@ -27,15 +26,18 @@ public class Entity : MonoBehaviour
 
     protected void DropLoot()
     {
-        int random = Random.Range(3, 5);
-
-        for (int i = 0; i < random; i++)
+        for (int i = 0; i < drop.Length; i++)
         {
-            Vector3 pos = new Vector3(transform.position.x + Random.Range(-2f, 2f),
-                                      transform.position.y + Random.Range(-2f, 2f),
-                                      transform.position.z + Random.Range(-2f, 2f));
+            int random = Random.Range(drop[i].chance.x, drop[i].chance.y);
 
-            Instantiate(drop, pos, transform.rotation);
+            for (int u = 0; u < random; u++)
+            {
+                Vector3 pos = new Vector3(transform.position.x + Random.Range(-2f, 2f),
+                                          transform.position.y + Random.Range(-2f, 2f),
+                                          transform.position.z + Random.Range(-2f, 2f));
+
+                Instantiate(drop[i].drop, pos, transform.rotation);
+            }
         }
     }
 }

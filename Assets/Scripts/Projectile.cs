@@ -7,8 +7,6 @@ public class Projectile : MonoBehaviour
     public float Damage { get; set; }
     public bool IsFriendly { get; set; }
 
-    public LayerMask layerMask;
-
     void Awake()
     {
         if (!IsFriendly)
@@ -26,10 +24,13 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.TryGetComponent<Entity>(out Entity entity) == true & IsFriendly)
         {
             entity.health -= Damage;
+            FindObjectOfType<AudioManager>().PlaySound("EnemyHit");
         }
         else if (other.gameObject.TryGetComponent<Player>(out Player player) == true & !IsFriendly)
         {
             Player.Health -= Damage;
+            if (Player.Health > 0)
+                FindObjectOfType<AudioManager>().PlaySound("PlayerHit");
         }
     }
 }

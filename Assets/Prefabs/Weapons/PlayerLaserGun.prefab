@@ -240,7 +240,7 @@ MonoBehaviour:
   muzzlePoint: {fileID: 4542669239021351476}
   damage: 50
   cooldown: 0.2
-  energyDraw: 0
+  energyDraw: 5
   fireButtonIndex: 0
   rayDuration: 0.1
   rayEndPoint: {fileID: 2260185627959192396}

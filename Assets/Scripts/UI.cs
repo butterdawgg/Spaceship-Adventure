@@ -14,6 +14,8 @@ public class UI : MonoBehaviour
     public Text highScoreTxt;
     public GameObject pauseMenu;
 
+    public static bool IsPaused { get; private set; }
+
     private static bool pause = false;
 
     void Start()
@@ -23,6 +25,8 @@ public class UI : MonoBehaviour
 
     void Update()
     {
+        IsPaused = pause;
+
         scoreTxt.text = Player.Score.ToString();
         highScoreTxt.text = Player.HighScore.ToString();
 
