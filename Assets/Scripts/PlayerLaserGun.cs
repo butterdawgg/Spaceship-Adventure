@@ -82,6 +82,9 @@ public class PlayerLaserGun : Gun
             
             Player.Energy -= energyDraw * 0.1f;
 
+            FindObjectOfType<AudioManager>().StopSound("PlayerFireBeamLaser");
+            FindObjectOfType<AudioManager>().PlaySound("PlayerFireBeamLaser");
+
             yield return new WaitForSeconds(0.1f);
         }
         else

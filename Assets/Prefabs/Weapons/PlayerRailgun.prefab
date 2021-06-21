@@ -201,7 +201,7 @@ GameObject:
   - component: {fileID: 8256522124781532024}
   - component: {fileID: 7008727138166090660}
   m_Layer: 11
-  m_Name: PlayerWasp
+  m_Name: PlayerRailgun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -235,14 +235,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b32f61f3f6b5a45a7927671083df99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gunType: 0
   muzzlePoint: {fileID: 4542669239021351476}
+  damage: 150
+  cooldown: 0.5
+  energyDraw: 10
+  fireButtonIndex: 0
   projectilePrototype: {fileID: 304391207230958630, guid: 399b70d25b74bf44892e493abe2bef77,
     type: 3}
-  damage: 60
-  cooldown: 0.5
   projectileSpeed: 1000
-  fireButtonIndex: 1
 --- !u!1001 &292433915726358746
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1207,6 +1207,11 @@ MonoBehaviour:
     volume: 0.05
     pitch: 1
     source: {fileID: 0}
+  - name: PlayerFireBeamLaser
+    clip: {fileID: 8300000, guid: 145ec9bb5d3c7444c910b38b67fb4788, type: 3}
+    volume: 0.2
+    pitch: 1
+    source: {fileID: 0}
 --- !u!4 &375433520
 Transform:
   m_ObjectHideFlags: 0

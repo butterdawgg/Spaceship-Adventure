@@ -26,4 +26,13 @@ public class AudioManager : MonoBehaviour
                 sounds[i].source.Play();
         }
     }
+
+    public void StopSound(string name)
+    {
+        for (int i = 0; i < sounds.Length; i++)
+        {
+            if (sounds[i].name == name)
+                sounds[i].source.Stop();
+        }
+    }
 }
