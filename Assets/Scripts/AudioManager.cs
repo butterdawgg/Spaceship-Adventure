@@ -24,7 +24,7 @@ public class AudioManager : MonoBehaviour
         {
             if (sounds[i].name == name)
             {
-
+                sounds[i].source.volume = sounds[i].volume * PlayerPrefs.GetFloat("MasterVolume")
                 sounds[i].source.Play();
             }
         }
