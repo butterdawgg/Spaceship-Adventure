@@ -39,15 +39,27 @@ public class Player : MonoBehaviour
     private static float _score;
     private static float _highScore;
 
+    private float isMouseInverted;
+    private int isRollAndRightLeftMovementSwapped;
+
     void Awake()
     {
+        ps.Stop();
+        rb = GetComponent<Rigidbody>();
+
+        if (PlayerPrefs.GetInt("IsMouseInverted") == 0)
+            isMouseInverted = 1f;
+        else
+            isMouseInverted = -1f;
+
+        isRollAndRightLeftMovementSwapped = PlayerPrefs.GetInt("IsRollAndRightLeftMovementSwapped");
         Health = maxHealth;
         Energy = maxEnergy;
         HighScore = PlayerPrefs.GetFloat("HighScore");
-        ps.Stop();
-        rb = GetComponent<Rigidbody>();
+
         screenCenter.x = Screen.width * 0.5f;
         screenCenter.y = Screen.height * 0.5f;
+
         StartCoroutine(DieCoroutine());
     }
 
@@ -71,6 +83,7 @@ public class Player : MonoBehaviour
      {
         lookInput.x = Input.mousePosition.x;
         lookInput.y = Input.mousePosition.y;
+        
 
         mouseDistance.x = (lookInput.x - screenCenter.x) / screenCenter.x;
         mouseDistance.y = (lookInput.y - screenCenter.y) / screenCenter.y;
@@ -78,9 +91,12 @@ public class Player : MonoBehaviour
         mouseDistance = Vector2.ClampMagnitude(mouseDistance, 1f);
 
         rb.AddTorque(transform.up * mouseDistance.x * lookRotateSpeed);
-        rb.AddTorque(transform.right * -mouseDistance.y * lookRotateSpeed);
+        rb.AddTorque(transform.right * (isMouseInverted * -mouseDistance.y) * lookRotateSpeed);
 
-        rollInput = Mathf.Lerp(rollInput, -Input.GetAxisRaw("Horizontal") * rollSpeed, rollAcceleration * Time.deltaTime);
+        if(isRollAndRightLeftMovementSwapped == 0)
+            rollInput = Mathf.Lerp(rollInput, -Input.GetAxisRaw("Horizontal") * rollSpeed, rollAcceleration * Time.deltaTime);
+        else
+            rollInput = Mathf.Lerp(rollInput, Input.GetAxisRaw("Roll") * rollSpeed, rollAcceleration * Time.deltaTime);
 
         rb.AddTorque(transform.forward * rollInput * rollSpeed);
      }
@@ -93,11 +109,22 @@ public class Player : MonoBehaviour
              forwardAcceleration * Time.deltaTime
              );
 
-        activeStrafeSpeed = Mathf.Lerp(
+        if(isRollAndRightLeftMovementSwapped == 0)
+        {
+            activeStrafeSpeed = Mathf.Lerp(
             activeStrafeSpeed,
             -Input.GetAxisRaw("Roll") * forwardSpeed,
             strafeAcceleration * Time.deltaTime
             );
+        }
+        else
+        {
+            activeStrafeSpeed = Mathf.Lerp(
+            activeStrafeSpeed,
+            Input.GetAxisRaw("Horizontal") * forwardSpeed,
+            strafeAcceleration * Time.deltaTime
+            );
+        }
 
         activeHoverSpeed = Mathf.Lerp(
             activeHoverSpeed,

@@ -68,11 +68,13 @@ public class UI : MonoBehaviour
 
     public void ExitToMenu()
     {
+        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
         SceneManager.LoadScene(0);
     }
 
     public void ResetHighScore()
     {
+        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
         Player.HighScore = 0f;
         PlayerPrefs.SetFloat("HighScore", Player.HighScore);
     }

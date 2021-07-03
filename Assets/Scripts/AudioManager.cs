@@ -23,7 +23,10 @@ public class AudioManager : MonoBehaviour
         for (int i = 0; i < sounds.Length; i++)
         {
             if (sounds[i].name == name)
+            {
+
                 sounds[i].source.Play();
+            }
         }
     }
 
