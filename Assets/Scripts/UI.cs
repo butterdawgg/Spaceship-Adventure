@@ -20,6 +20,9 @@ public class UI : MonoBehaviour
 
     public static bool IsPaused { get; private set; }
 
+    public Text QEtext;
+    public Text ADtext;
+
     private static bool pause = false;
 
     void Start()
@@ -42,6 +45,17 @@ public class UI : MonoBehaviour
         energyTxt.text = Mathf.Ceil(Player.Energy).ToString();
         energyImg.transform.localScale = new Vector3(Player.Energy * scale, 1f, 1f);
         
+        if(PlayerPrefs.GetInt("IsRollAndRightLeftMovementSwapped") == 0)
+        {
+            QEtext.text = "Q, E";
+            ADtext.text = "A, D";
+        }
+        else
+        {
+            QEtext.text = "A, D";
+            ADtext.text = "Q, E";
+        }
+
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
