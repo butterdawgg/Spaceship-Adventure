@@ -49,12 +49,11 @@ public class Player : MonoBehaviour
         screenCenter.x = Screen.width * 0.5f;
         screenCenter.y = Screen.height * 0.5f;
         StartCoroutine(DieCoroutine());
-    }
 
+    }
     void FixedUpdate()
     {
         Position = transform.position;
-
         if (Energy > maxEnergy)
             Energy = maxEnergy;
 
@@ -67,7 +66,7 @@ public class Player : MonoBehaviour
         Move();
     }
 
-    void Rotate()
+     public void Rotate()
     {
         lookInput.x = Input.mousePosition.x;
         lookInput.y = Input.mousePosition.y;
