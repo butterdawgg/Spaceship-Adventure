@@ -51,14 +51,6 @@ public class Player : MonoBehaviour
         StartCoroutine(DieCoroutine());
     }
 
-    void Update()
-    {
-        if (Input.GetKey(KeyCode.F))
-            Time.timeScale = 0.5f;
-        else
-            Time.timeScale = 1f;
-    }
-
     void FixedUpdate()
     {
         Position = transform.position;
@@ -126,7 +118,7 @@ public class Player : MonoBehaviour
             Destroy(other.gameObject);
         }
     }
-
+    
     IEnumerator DieCoroutine()
     {
         if (Health <= 0)
