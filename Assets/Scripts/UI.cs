@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
@@ -14,12 +15,17 @@ public class UI : MonoBehaviour
     public Text highScoreTxt;
     public GameObject pauseMenu;
 
+    public Button resetHighScoreButton;
+    public Button exitToMenuButton;
+
     public static bool IsPaused { get; private set; }
 
     private static bool pause = false;
 
     void Start()
     {
+        resetHighScoreButton.onClick.AddListener(ResetHighScore);
+        exitToMenuButton.onClick.AddListener(ExitToMenu);
         Pause();
     }
 
@@ -58,5 +64,16 @@ public class UI : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         pause = true;
+    }
+
+    public void ExitToMenu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void ResetHighScore()
+    {
+        Player.HighScore = 0f;
+        PlayerPrefs.SetFloat("HighScore", Player.HighScore);
     }
 }
