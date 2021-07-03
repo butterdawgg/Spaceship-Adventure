@@ -706,6 +706,8 @@ GameObject:
   - component: {fileID: 605659626}
   - component: {fileID: 605659625}
   - component: {fileID: 605659628}
+  - component: {fileID: 605659629}
+  - component: {fileID: 605659630}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -838,6 +840,34 @@ MonoBehaviour:
   m_BeforeTransparentBundles: []
   m_BeforeStackBundles: []
   m_AfterStackBundles: []
+--- !u!114 &605659629
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605659624}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d25e0882779d0224fbad97a846a4df8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!54 &605659630
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 605659624}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 94
+  m_CollisionDetection: 0
 --- !u!1 &606998119
 GameObject:
   m_ObjectHideFlags: 0
@@ -2137,7 +2167,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b9de06870a6f7e499ce743071a2bf3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mainCamera: {fileID: 605659627}
   mainMenu: {fileID: 1319950131}
   playButton: {fileID: 1161671384}
   exitButton: {fileID: 860517083}

@@ -6,8 +6,6 @@ using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour
 {
-    public Transform mainCamera;
-
     public GameObject mainMenu;
     
     public Button playButton;
@@ -36,10 +34,7 @@ public class MainMenu : MonoBehaviour
         masterVolumeSlider.value = PlayerPrefs.GetFloat("MasterVolume");
     }
 
-    void FixedUpdate()
-    {
-        mainCamera.rotation = Quaternion.Euler(0f, mainCamera.eulerAngles.y + 0.33f, 0f);
-    }
+    
 
     public void OnClickPlayButton()
     {
