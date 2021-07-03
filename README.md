@@ -3,8 +3,7 @@
 Source code of *Holydoggo/Spaceship*
 
 **Recent update:**
-- refactored all of the main game features
+- added sounds!
+- added health orbs that restore your health
+- added high score save mechanics: now it will save data on your computer
 - major bugfixes
-- major optimization
-- created new repository for build
-- added lasers

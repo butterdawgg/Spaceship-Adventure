@@ -6,12 +6,17 @@ using UnityEngine.UI;
 public class UI : MonoBehaviour
 {
     public float scale = 1;
-    public Image img;
+    public Image healthImg;
     public Text healthTxt;
+    public Image energyImg;
+    public Text energyTxt;
     public Text scoreTxt;
     public Text highScoreTxt;
-    public static bool pause = false;
     public GameObject pauseMenu;
+
+    public static bool IsPaused { get; private set; }
+
+    private static bool pause = false;
 
     void Start()
     {
@@ -20,19 +25,17 @@ public class UI : MonoBehaviour
 
     void Update()
     {
+        IsPaused = pause;
+
         scoreTxt.text = Player.Score.ToString();
         highScoreTxt.text = Player.HighScore.ToString();
 
-        if (Player.Health <= 0)
-        {
-            healthTxt.text = "0";
-            img.transform.localScale = new Vector3(0f, 1f, 1f);
-        }
-        else
-        {
-            healthTxt.text = Player.Health.ToString();
-            img.transform.localScale = new Vector3(Player.Health * scale, 1f, 1f);
-        }
+        healthTxt.text = Mathf.Ceil(Player.Health).ToString();
+        healthImg.transform.localScale = new Vector3(Player.Health * scale, 1f, 1f);
+
+        energyTxt.text = Mathf.Ceil(Player.Energy).ToString();
+        energyImg.transform.localScale = new Vector3(Player.Energy * scale, 1f, 1f);
+        
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

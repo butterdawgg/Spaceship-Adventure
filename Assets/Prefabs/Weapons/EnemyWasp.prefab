@@ -90,11 +90,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   muzzlePoint: {fileID: 4542669239021351476}
-  damage: 15
+  damage: 10
   cooldown: 0.7
+  energyDraw: 0
   projectilePrototype: {fileID: 156316926240573107, guid: cdb7eba4100bef3498ce9ec63e690991,
     type: 3}
-  projectileSpeed: 150
+  projectileSpeed: 100
 --- !u!1001 &292433915726358746
 PrefabInstance:
   m_ObjectHideFlags: 0

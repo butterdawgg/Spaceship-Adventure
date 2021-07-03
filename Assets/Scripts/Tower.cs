@@ -28,6 +28,8 @@ public class Tower : Entity
 
         Physics.IgnoreCollision(transform.GetChild(0).GetComponent<Collider>(), 
                                 towerPivot.transform.GetChild(0).GetComponent<Collider>());
+
+        healthBar.SetupK(health);
     }
 
     void FixedUpdate()
@@ -42,37 +44,34 @@ public class Tower : Entity
             SetGunsFiring(false);
             return;
         }
-        
-        Vector3 dirToTarget = (Player.Position - transform.position).normalized;
 
         float distance = (Player.Position - transform.position).magnitude;
+        Vector3 dirToTarget = (Player.Position - transform.position).normalized;
 
-        if (distance > radius | healthBar == null)
+        healthBar.Do(health, distance, radius, dirToTarget, transform.up);
+
+        if (Player.Health > 0)
         {
-            healthBar.SetActive(false);
+            if (distance > radius)
+                SetGunsFiring(false);
+            else
+            {
+                SetGunsFiring(true);
+
+                transform.rotation = Quaternion.RotateTowards(transform.rotation,
+                                                              Quaternion.LookRotation(dirToTarget, towerBase.transform.up),
+                                                              smoothness);
+
+                Vector3 rot = transform.localEulerAngles;
+                if (rot.x > 30f & rot.x < 50f)
+                    transform.localRotation = Quaternion.Euler(30f, rot.y, rot.z);
+            }
         }
-        if (distance < radius & healthBar != null)
-        {
-            healthBar.SetActive(true);
-            healthBar.transform.rotation = Quaternion.LookRotation(dirToTarget, towerBase.transform.up);
-            healthBar.transform.localScale = new Vector3(healthBarScale * health, healthBar.transform.localScale.y, 1f);
-        }
-         
-        if (distance > radius)
+        else
         {
             SetGunsFiring(false);
             return;
         }
-
-        SetGunsFiring(true);
-
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, 
-                                                      Quaternion.LookRotation(dirToTarget, towerBase.transform.up), 
-                                                      smoothness);
-
-        Vector3 rot = transform.localEulerAngles;
-        if (rot.x > 30f & rot.x < 50f)
-            transform.localRotation = Quaternion.Euler(30f, rot.y, rot.z);
     }
 
     IEnumerator DieCoroutine()
@@ -81,11 +80,13 @@ public class Tower : Entity
         {
             ps.Play();
             Player.Score += scoreGetAmount;
-            Destroy(healthBar);
             Destroy(body);
+            healthBar.Destroy();
             for (int i = 0; i < hardpoints.Length; i++)
                 Destroy(hardpoints[i]);
+            FindObjectOfType<AudioManager>().PlaySound("Explosion");
             yield return new WaitForSeconds(0.5f);
+            DropLoot();
             Destroy(gameObject);
         }
         yield return null;
