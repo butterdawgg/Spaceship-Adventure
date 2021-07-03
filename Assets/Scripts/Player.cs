@@ -38,22 +38,32 @@ public class Player : MonoBehaviour
         screenCenter.x = Screen.width * 0.5f;
         screenCenter.y = Screen.height * 0.5f;
         StartCoroutine(DieCoroutine());
+<<<<<<< Updated upstream
         ps.Stop();
+=======
+>>>>>>> Stashed changes
     }
 
     void FixedUpdate()
     {
         Health = health;
         Position = transform.position;
+<<<<<<< Updated upstream
 
         if (health <= 0)
+=======
+        if (Energy > maxEnergy)
+            Energy = maxEnergy;
+
+        if (Health <= 0)
+>>>>>>> Stashed changes
             return;
 
         Rotate();
         Move();
     }
 
-    void Rotate()
+     public void Rotate()
     {
         lookInput.x = Input.mousePosition.x;
         lookInput.y = Input.mousePosition.y;
