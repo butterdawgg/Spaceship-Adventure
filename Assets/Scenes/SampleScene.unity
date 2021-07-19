@@ -4078,6 +4078,26 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 560589661178939559, guid: 796a30d2b8c11d84fa4b5e012bbde408,
+        type: 3}
+      propertyPath: forwardAcceleration
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 560589661178939559, guid: 796a30d2b8c11d84fa4b5e012bbde408,
+        type: 3}
+      propertyPath: strafeAcceleration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 560589661178939559, guid: 796a30d2b8c11d84fa4b5e012bbde408,
+        type: 3}
+      propertyPath: hoverAcceleration
+      value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 560589661178939559, guid: 796a30d2b8c11d84fa4b5e012bbde408,
+        type: 3}
+      propertyPath: rollAcceleration
+      value: 0.1
+      objectReference: {fileID: 0}
     - target: {fileID: 1704123329259120197, guid: 796a30d2b8c11d84fa4b5e012bbde408,
         type: 3}
       propertyPath: m_LocalRotation.x
