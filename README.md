@@ -1,6 +1,6 @@
 # Spaceship Source Code
 
-Source code of *Holydoggo/Spaceship*
+Source code of ***Holydoggo/Spaceship***
 
 **Recent update:**
 - added main menu
