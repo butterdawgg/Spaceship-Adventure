@@ -59,8 +59,8 @@ public class MenuManager : MonoBehaviour
         mouseInversionXAxisToggle.isOn = SerializeManager.Instance.GetBool(BoolType.MouseInversionXAxis);
 
         masterVolumeSlider.value = SerializeManager.Instance.GetFloat(FloatType.MasterVolume);
-        SFXVolumeSlider.value = SerializeManager.Instance.GetFloat(FloatType.MasterVolume);
-        musicVolumeSlider.value = SerializeManager.Instance.GetFloat(FloatType.MasterVolume);
+        SFXVolumeSlider.value = SerializeManager.Instance.GetFloat(FloatType.SfxVolume);
+        musicVolumeSlider.value = SerializeManager.Instance.GetFloat(FloatType.MusicVolume);
     }
 
     public void OnClickOptionsBackButton()
