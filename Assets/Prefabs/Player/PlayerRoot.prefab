@@ -66,19 +66,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b5725a7fcba6c2b429290bf92540f4fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ps: {fileID: 6251027795129249863}
-  render: {fileID: 385773224107094806}
   maxHealth: 250
   maxEnergy: 250
-  forwardSpeed: 125
-  strafeSpeed: 45
-  hoverSpeed: 30
-  forwardAcceleration: 5
-  strafeAcceleration: 3
-  hoverAcceleration: 2
-  lookRotateSpeed: 15
-  rollSpeed: 4
-  rollAcceleration: 4
+  forwardSpeed: 150
+  strafeSpeed: 125
+  hoverSpeed: 125
+  forwardAcceleration: 1
+  strafeAcceleration: 0.75
+  hoverAcceleration: 0.75
+  lookRotateSpeed: 20
+  rollSpeed: 12
+  rollAcceleration: 0.25
+  ps: {fileID: 6251027795129249863}
+  render: {fileID: 385773224107094806}
   hardpoints:
   - {fileID: 1272997905323281049}
   - {fileID: 3133229474471955654}

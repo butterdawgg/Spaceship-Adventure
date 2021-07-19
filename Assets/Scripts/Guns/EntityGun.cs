@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerProjectileGun : Gun
+public class EntityGun : Gun
 {
-    public int fireButtonIndex;
-    public GameObject projectilePrototype;
-    public float projectileSpeed;
+    [SerializeField] GameObject projectilePrototype;
+    [SerializeField] float projectileSpeed;
+    public bool CanFire { get; set; }
 
     void Awake()
     {
@@ -18,17 +18,17 @@ public class PlayerProjectileGun : Gun
         GameObject projectile = Instantiate(projectilePrototype, muzzlePoint.transform.position, transform.rotation);
         projectile.GetComponent<Projectile>().Damage = damage;
         projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileSpeed;
-        projectile.GetComponent<Projectile>().IsFriendly = true;
-        Player.Energy -= energyDraw;
-        FindObjectOfType<AudioManager>().PlaySound("PlayerFireProjectile");
+        projectile.GetComponent<Projectile>().IsFriendly = false;
+
+        FindObjectOfType<AudioManager>().PlaySound("EnemyFire");
     }
 
     private IEnumerator FireCoroutine()
     {
-        if (Input.GetMouseButton(fireButtonIndex) & Player.Energy > 0 & !UI.IsPaused)
+        if (CanFire & !UI.IsPaused)
         {
             Fire();
-            yield return new WaitForSeconds(cooldown);    
+            yield return new WaitForSeconds(cooldown);
         }
         yield return null;
         StartCoroutine(FireCoroutine());

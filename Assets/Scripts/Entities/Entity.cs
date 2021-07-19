@@ -4,16 +4,21 @@ using UnityEngine;
 
 public class Entity : MonoBehaviour
 {
-    public float health = 200;
-    public HealthBar healthBar;
+    [SerializeField] protected HealthBar healthBar;
 
-    public GameObject body;
-    public ParticleSystem ps;
+    [SerializeField] protected GameObject[] hardpoints;
+    [SerializeField] protected GameObject[] guns;
+    [SerializeField] protected Drop[] drop;
+
+    [SerializeField] protected GameObject body;
+    [SerializeField] protected ParticleSystem ps;
+
+    [SerializeField] protected float maxHealth;
+
+    public float Health { get { return _health; } set { if (value > 0) _health = value; else _health = 0; } }
+    private float _health;
+
     public float scoreGetAmount;
-
-    public GameObject[] hardpoints;
-    public GameObject[] guns;
-    public Drop[] drop;
 
     protected void SetGunsFiring(bool fire)
     {

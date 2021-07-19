@@ -5,17 +5,18 @@ using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 {
     //Public fields:
-    public ParticleSystem ps;
-    public GameObject render;
-    public float maxHealth;
-    public float maxEnergy;
+    [SerializeField] float maxHealth;
+    [SerializeField] float maxEnergy;
 
-    public float forwardSpeed, strafeSpeed, hoverSpeed;
-    public float forwardAcceleration, strafeAcceleration, hoverAcceleration;
+    [SerializeField] float forwardSpeed, strafeSpeed, hoverSpeed;
+    [SerializeField] float forwardAcceleration, strafeAcceleration, hoverAcceleration;
 
-    public float lookRotateSpeed;
-    public float rollSpeed, rollAcceleration;
-    public GameObject[] hardpoints;
+    [SerializeField] float lookRotateSpeed;
+    [SerializeField] float rollSpeed, rollAcceleration;
+
+    [SerializeField] ParticleSystem ps;
+    [SerializeField] GameObject render;
+    [SerializeField] GameObject[] hardpoints;
 
 
     //Public properties:
@@ -39,23 +40,27 @@ public class Player : MonoBehaviour
     private static float _score;
     private static float _highScore;
 
-    private float isMouseInverted;
-    private int isRollAndRightLeftMovementSwapped;
+    private float isMouseInvertedYAxis;
+    private float isMouseInvertedXAxis;
 
     void Awake()
     {
         ps.Stop();
         rb = GetComponent<Rigidbody>();
 
-        if (PlayerPrefs.GetInt("IsMouseInverted") == 0)
-            isMouseInverted = 1f;
+        if (SerializeManager.Instance.GetBool(BoolType.MouseInversionYAxis))
+            isMouseInvertedYAxis = -1f;
         else
-            isMouseInverted = -1f;
+            isMouseInvertedYAxis = 1f;
 
-        isRollAndRightLeftMovementSwapped = PlayerPrefs.GetInt("IsRollAndRightLeftMovementSwapped");
+        if (SerializeManager.Instance.GetBool(BoolType.MouseInversionXAxis))
+            isMouseInvertedXAxis = -1f;
+        else
+            isMouseInvertedXAxis = 1f;
+
         Health = maxHealth;
         Energy = maxEnergy;
-        HighScore = PlayerPrefs.GetFloat("HighScore");
+        HighScore = SerializeManager.Instance.GetFloat(FloatType.HighScore);
 
         screenCenter.x = Screen.width * 0.5f;
         screenCenter.y = Screen.height * 0.5f;
@@ -79,71 +84,55 @@ public class Player : MonoBehaviour
         Move();
     }
 
-     public void Rotate()
-     {
+    public void Rotate()
+    {
         lookInput.x = Input.mousePosition.x;
         lookInput.y = Input.mousePosition.y;
-        
 
         mouseDistance.x = (lookInput.x - screenCenter.x) / screenCenter.x;
         mouseDistance.y = (lookInput.y - screenCenter.y) / screenCenter.y;
 
         mouseDistance = Vector2.ClampMagnitude(mouseDistance, 1f);
 
-        rb.AddTorque(transform.up * mouseDistance.x * lookRotateSpeed);
-        rb.AddTorque(transform.right * (isMouseInverted * -mouseDistance.y) * lookRotateSpeed);
+        rb.AddTorque(transform.up * (isMouseInvertedXAxis * mouseDistance.x) * lookRotateSpeed);
+        rb.AddTorque(transform.right * (isMouseInvertedYAxis * -mouseDistance.y) * lookRotateSpeed);
 
-        if(isRollAndRightLeftMovementSwapped == 0)
-            rollInput = Mathf.Lerp(rollInput, -Input.GetAxisRaw("Horizontal") * rollSpeed, rollAcceleration * Time.deltaTime);
+        if (Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.RollRight)) & !Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.RollLeft)))
+            rollInput = Mathf.Lerp(rollInput, -rollSpeed, rollAcceleration);
+        else if (Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.RollLeft)) & !Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.RollRight)))
+            rollInput = Mathf.Lerp(rollInput, rollSpeed, rollAcceleration);
         else
-            rollInput = Mathf.Lerp(rollInput, Input.GetAxisRaw("Roll") * rollSpeed, rollAcceleration * Time.deltaTime);
+            rollInput = Mathf.Lerp(rollInput, 0f, rollAcceleration);
 
-        rb.AddTorque(transform.forward * rollInput * rollSpeed);
-     }
+        rb.AddTorque(transform.forward * rollInput);
+    }
 
     void Move()
     {
-        activeForwardSpeed = Mathf.Lerp(
-             activeForwardSpeed,
-             Input.GetAxisRaw("Vertical") * forwardSpeed,
-             forwardAcceleration * Time.deltaTime
-             );
-
-        if(isRollAndRightLeftMovementSwapped == 0)
-        {
-            activeStrafeSpeed = Mathf.Lerp(
-            activeStrafeSpeed,
-            -Input.GetAxisRaw("Roll") * forwardSpeed,
-            strafeAcceleration * Time.deltaTime
-            );
-        }
+        if(Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.FlyForward)) & !Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.FlyBackward)))
+            activeForwardSpeed = Mathf.Lerp(activeForwardSpeed, forwardSpeed, forwardAcceleration);
+        else if (Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.FlyBackward)) & !Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.FlyForward)))
+            activeForwardSpeed = Mathf.Lerp(activeForwardSpeed, -forwardSpeed, forwardAcceleration);
         else
-        {
-            activeStrafeSpeed = Mathf.Lerp(
-            activeStrafeSpeed,
-            Input.GetAxisRaw("Horizontal") * forwardSpeed,
-            strafeAcceleration * Time.deltaTime
-            );
-        }
+            activeForwardSpeed = Mathf.Lerp(activeForwardSpeed, 0f, forwardAcceleration);
 
-        activeHoverSpeed = Mathf.Lerp(
-            activeHoverSpeed,
-            Input.GetAxisRaw("Hover") * forwardSpeed,
-            hoverAcceleration * Time.deltaTime
-            );
+        if (Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.FlyRight)) & !Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.FlyLeft)))
+            activeStrafeSpeed = Mathf.Lerp(activeStrafeSpeed, strafeSpeed, strafeAcceleration);
+        else if (Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.FlyLeft)) & !Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.FlyRight)))
+            activeStrafeSpeed = Mathf.Lerp(activeStrafeSpeed, -strafeSpeed, strafeAcceleration);
+        else
+            activeStrafeSpeed = Mathf.Lerp(activeStrafeSpeed, 0f, strafeAcceleration);
+
+        if (Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.FlyUp)) & !Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.FlyDown)))
+            activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, hoverSpeed, hoverAcceleration);
+        else if (Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.FlyDown)) & !Input.GetKey(SerializeManager.Instance.GetControls(ControlsType.FlyUp)))
+            activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, -hoverSpeed, hoverAcceleration);
+        else
+            activeHoverSpeed = Mathf.Lerp(activeHoverSpeed, 0f, hoverAcceleration);
 
         rb.AddForce(transform.forward * activeForwardSpeed);
         rb.AddForce(transform.right * activeStrafeSpeed);
         rb.AddForce(transform.up * activeHoverSpeed);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if(other.tag == "powerCell")
-        {
-            Health += 50f;
-            Destroy(other.gameObject);
-        }
     }
     
     IEnumerator DieCoroutine()
@@ -168,11 +157,11 @@ public class Player : MonoBehaviour
     public void ResetHighScore()
     {
         HighScore = 0f;
-        PlayerPrefs.SetFloat("HighScore", HighScore);
+        SerializeManager.Instance.SetFloat(FloatType.HighScore, HighScore);
     }
 
     void OnDisable()
     {
-        PlayerPrefs.SetFloat("HighScore", HighScore);
+        SerializeManager.Instance.SetFloat(FloatType.HighScore, HighScore);
     }
 }

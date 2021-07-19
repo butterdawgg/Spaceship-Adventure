@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class UnitSpawner : MonoBehaviour
 {
-    public float range;
-    public float amount;
+    [SerializeField] float range;
+    [SerializeField] float amount;
 
-    public GameObject prototype;
+    [SerializeField] GameObject prototype;
 
     void Start()
     {

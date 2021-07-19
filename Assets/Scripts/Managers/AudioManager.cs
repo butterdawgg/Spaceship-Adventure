@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    public Sound[] sounds;
+    [SerializeField] Sound[] sounds;
 
     void Awake()
     {
@@ -24,7 +24,11 @@ public class AudioManager : MonoBehaviour
         {
             if (sounds[i].name == name)
             {
-                sounds[i].source.volume = sounds[i].volume * PlayerPrefs.GetFloat("MasterVolume");
+                if (sounds[i].soundType == SoundType.SFX)
+                    sounds[i].source.volume = sounds[i].volume * SerializeManager.Instance.GetFloat(FloatType.SfxVolume) * SerializeManager.Instance.GetFloat(FloatType.MasterVolume);
+                else if (sounds[i].soundType == SoundType.Music)
+                    sounds[i].source.volume = sounds[i].volume * SerializeManager.Instance.GetFloat(FloatType.MusicVolume) * SerializeManager.Instance.GetFloat(FloatType.MasterVolume);
+
                 sounds[i].source.Play();
             }
         }

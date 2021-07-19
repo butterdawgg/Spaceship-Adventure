@@ -6,22 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class UI : MonoBehaviour
 {
-    public float scale = 1;
-    public Image healthImg;
-    public Text healthTxt;
-    public Image energyImg;
-    public Text energyTxt;
-    public Text scoreTxt;
-    public Text highScoreTxt;
-    public GameObject pauseMenu;
+    [SerializeField] float scale = 1;
+    [SerializeField] Image healthImg;
+    [SerializeField] Text healthTxt;
+    [SerializeField] Image energyImg;
+    [SerializeField] Text energyTxt;
+    [SerializeField] Text scoreTxt;
+    [SerializeField] Text highScoreTxt;
+    [SerializeField] GameObject pauseMenu;
 
-    public Button resetHighScoreButton;
-    public Button exitToMenuButton;
+    [SerializeField] Button resetHighScoreButton;
+    [SerializeField] Button exitToMenuButton;
 
     public static bool IsPaused { get; private set; }
-
-    public Text QEtext;
-    public Text ADtext;
 
     private static bool pause = false;
 
@@ -44,18 +41,6 @@ public class UI : MonoBehaviour
 
         energyTxt.text = Mathf.Ceil(Player.Energy).ToString();
         energyImg.transform.localScale = new Vector3(Player.Energy * scale, 1f, 1f);
-        
-        if(PlayerPrefs.GetInt("IsRollAndRightLeftMovementSwapped") == 0)
-        {
-            QEtext.text = "Q, E";
-            ADtext.text = "A, D";
-        }
-        else
-        {
-            QEtext.text = "A, D";
-            ADtext.text = "Q, E";
-        }
-
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {

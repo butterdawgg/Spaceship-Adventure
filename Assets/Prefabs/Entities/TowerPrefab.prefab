@@ -61,18 +61,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 11c477ebf9a726a4ea90799ac6e19cc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  health: 500
   healthBar:
     bar: {fileID: 8608928220408560408}
     scale: 10
-    value: 0
-    distance: 0
-    radius: 0
-    direction: {x: 0, y: 0, z: 0}
-    vectorUp: {x: 0, y: 0, z: 0}
-  body: {fileID: 8989664674307078090}
-  ps: {fileID: 9172054908159923144}
-  scoreGetAmount: 20
   hardpoints:
   - {fileID: 5353213964990215906}
   guns:
@@ -83,6 +74,10 @@ MonoBehaviour:
     chance: {x: 3, y: 5}
   - drop: {fileID: 7396254203944592656, guid: 8ea8e1a4a31adad4daae6dfa7bfffe40, type: 3}
     chance: {x: 0, y: 1}
+  body: {fileID: 8989664674307078090}
+  ps: {fileID: 9172054908159923144}
+  maxHealth: 500
+  scoreGetAmount: 15
   radius: 100
   smoothness: 3
   towerPivot: {fileID: 7389364761301751341}

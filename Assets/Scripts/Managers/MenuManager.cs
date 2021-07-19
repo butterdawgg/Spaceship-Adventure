@@ -1,0 +1,99 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using System.Threading;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+
+public class MenuManager : MonoBehaviour
+{
+    [SerializeField] GameObject mainMenu;
+
+    [SerializeField] Button playButton;
+    [SerializeField] Button exitButton;
+    [SerializeField] Button optionsButton;
+
+
+    [SerializeField] GameObject options;
+
+    [SerializeField] Button optionsBackButton;
+    [SerializeField] Slider masterVolumeSlider;
+    [SerializeField] Slider SFXVolumeSlider;
+    [SerializeField] Slider musicVolumeSlider;
+    [SerializeField] Toggle mouseInversionYAxisToggle;
+    [SerializeField] Toggle mouseInversionXAxisToggle;
+
+    void Awake()
+    {
+        playButton.onClick.AddListener(OnClickPlayButton);
+        exitButton.onClick.AddListener(OnClickExitButton);
+        optionsButton.onClick.AddListener(OnClickOptionsButton);
+        optionsBackButton.onClick.AddListener(OnClickOptionsBackButton);
+
+        masterVolumeSlider.onValueChanged.AddListener(OnChangeValueMasterVolumeSlider);
+        SFXVolumeSlider.onValueChanged.AddListener(OnChangeValueSFXVolumeSlider);
+        musicVolumeSlider.onValueChanged.AddListener(OnChangeValueMusicVolumeSlider);
+        mouseInversionYAxisToggle.onValueChanged.AddListener(OnChangeValueMouseInversionYAxisToggle);
+        mouseInversionXAxisToggle.onValueChanged.AddListener(OnChangeValueMouseInversionXAxisToggle);
+    }
+
+    public void OnClickPlayButton()
+    {
+        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        SceneManager.LoadScene(1);
+    }
+
+    public void OnClickExitButton()
+    {
+        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        Application.Quit();
+    }
+
+    public void OnClickOptionsButton()
+    {
+        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        mainMenu.SetActive(false);
+        options.SetActive(true);
+
+        mouseInversionYAxisToggle.isOn = SerializeManager.Instance.GetBool(BoolType.MouseInversionYAxis);
+        mouseInversionXAxisToggle.isOn = SerializeManager.Instance.GetBool(BoolType.MouseInversionXAxis);
+
+        masterVolumeSlider.value = SerializeManager.Instance.GetFloat(FloatType.MasterVolume);
+        SFXVolumeSlider.value = SerializeManager.Instance.GetFloat(FloatType.MasterVolume);
+        musicVolumeSlider.value = SerializeManager.Instance.GetFloat(FloatType.MasterVolume);
+    }
+
+    public void OnClickOptionsBackButton()
+    {
+        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        mainMenu.SetActive(true);
+        options.SetActive(false);
+    }
+
+    public void OnChangeValueMasterVolumeSlider(float value)
+    {
+        SerializeManager.Instance.SetFloat(FloatType.MasterVolume, value);
+    }
+
+    public void OnChangeValueSFXVolumeSlider(float value)
+    {
+        SerializeManager.Instance.SetFloat(FloatType.SfxVolume, value);
+    }
+
+    public void OnChangeValueMusicVolumeSlider(float value)
+    {
+        SerializeManager.Instance.SetFloat(FloatType.MusicVolume, value);
+    }
+
+    public void OnChangeValueMouseInversionYAxisToggle(bool value)
+    {
+        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        SerializeManager.Instance.SetBool(BoolType.MouseInversionYAxis, value);
+    }
+
+    public void OnChangeValueMouseInversionXAxisToggle(bool value)
+    {
+        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        SerializeManager.Instance.SetBool(BoolType.MouseInversionXAxis, value);
+    }
+}

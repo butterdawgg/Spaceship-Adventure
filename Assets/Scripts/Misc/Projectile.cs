@@ -21,12 +21,12 @@ public class Projectile : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.TryGetComponent<Entity>(out Entity entity) == true & IsFriendly)
+        if (other.gameObject.TryGetComponent<Entity>(out Entity entity) & IsFriendly)
         {
-            entity.health -= Damage;
+            entity.Health -= Damage;
             FindObjectOfType<AudioManager>().PlaySound("EnemyHit");
         }
-        else if (other.gameObject.TryGetComponent<Player>(out Player player) == true & !IsFriendly)
+        else if (other.gameObject.TryGetComponent<Player>(out Player player) & !IsFriendly)
         {
             Player.Health -= Damage;
             if (Player.Health > 0)

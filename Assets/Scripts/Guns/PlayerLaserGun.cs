@@ -4,10 +4,9 @@ using UnityEngine;
 
 public class PlayerLaserGun : Gun
 {
-    public int fireButtonIndex;
-    public float rayDuration;
-    public Transform rayEndPoint;
-    public LayerMask layerMask;
+    [SerializeField] float rayDuration;
+    [SerializeField] Transform rayEndPoint;
+    [SerializeField] int fireButtonIndex;
 
     private LineRenderer lr;
     private Collider hitCollider;
@@ -46,7 +45,7 @@ public class PlayerLaserGun : Gun
             {
                 if (hitCollider.gameObject.TryGetComponent<Entity>(out Entity entity))
                 {
-                    entity.health -= damage;
+                    entity.Health -= damage;
                     FindObjectOfType<AudioManager>().PlaySound("EnemyHit");
                 }
             }
@@ -75,7 +74,7 @@ public class PlayerLaserGun : Gun
             if (hitCollider != null)
             {
                 if (hitCollider.gameObject.TryGetComponent<Entity>(out Entity entity))
-                    entity.health -= damage * 0.1f;
+                    entity.Health -= damage * 0.1f;
             }
 
             lr.forceRenderingOff = false;

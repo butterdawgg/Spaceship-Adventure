@@ -10,10 +10,10 @@ public enum PickableType
 
 public class Pickable : MonoBehaviour
 {
-    public PickableType pickableType;
-    public float amount;
-    public float pickupDistance;
-    public float pickupVelocity;
+    [SerializeField] PickableType pickableType;
+    [SerializeField] float amount;
+    [SerializeField] float pickupDistance;
+    [SerializeField] float pickupVelocity;
 
     private Rigidbody rb;
 

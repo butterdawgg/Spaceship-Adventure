@@ -5,12 +5,12 @@ using UnityEngine;
 public class Enemy : Entity
 {
     //Public fields:
-    public float maxSpeed;
-    public float rotationSpeed;
-    public float stopRadius;
-    public float shootRadius;
-    public float goRadius;
-    public ParticleSystem ps1;
+    [SerializeField] float maxSpeed;
+    [SerializeField] float rotationSpeed;
+    [SerializeField] float stopRadius;
+    [SerializeField] float shootRadius;
+    [SerializeField] float goRadius;
+    [SerializeField] ParticleSystem ps1;
 
 
     //Private fields:
@@ -19,6 +19,8 @@ public class Enemy : Entity
 
     void Awake()
     {
+        Health = maxHealth;
+
         rb = GetComponent<Rigidbody>();
         StartCoroutine(DieCoroutine());
         ps.Stop();
@@ -28,12 +30,12 @@ public class Enemy : Entity
             Instantiate(guns[Random.Range(0, guns.Length)], hardpoints[i].transform);
         }
 
-        healthBar.SetupK(health);
+        healthBar.SetupK(Health);
     }
 
     void FixedUpdate()
     {
-        if (health <= 0)
+        if (Health <= 0)
         {
             SetGunsFiring(false);
             return;
@@ -42,7 +44,7 @@ public class Enemy : Entity
         dirToTarget = (Player.Position - transform.position).normalized;
         float distance = (Player.Position - transform.position).magnitude;
 
-        healthBar.Do(health, distance, shootRadius, dirToTarget, transform.up);
+        healthBar.Do(Health, distance, shootRadius, dirToTarget, transform.up);
 
         if (Player.Health > 0)
         {
@@ -89,7 +91,7 @@ public class Enemy : Entity
 
     IEnumerator DieCoroutine()
     {
-        if (health <= 0)
+        if (Health <= 0)
         {
             ps.Play();
             Player.Score += scoreGetAmount;

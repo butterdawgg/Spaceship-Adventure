@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class LaserSight : MonoBehaviour
 {
-    private LineRenderer lr;
+    [SerializeField] LayerMask layerMask;
+    [SerializeField] Transform endPoint;
 
-    public LayerMask layerMask;
-    public Transform endPoint;
+    private LineRenderer lr;
 
     void Awake()
     {

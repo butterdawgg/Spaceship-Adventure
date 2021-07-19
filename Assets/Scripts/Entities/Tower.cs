@@ -5,15 +5,17 @@ using UnityEngine;
 public class Tower : Entity
 {
     //Public fields:
-    public float radius;
-    public float smoothness;
-    public GameObject towerPivot;
-    public GameObject towerBase;
-    public Vector3 defaultPosition;
+    [SerializeField] float radius;
+    [SerializeField] float smoothness;
+    [SerializeField] GameObject towerPivot;
+    [SerializeField] GameObject towerBase;
+    [SerializeField] Vector3 defaultPosition;
     
 
     void Awake()
     {
+        Health = maxHealth;
+
         StartCoroutine(DieCoroutine());
         ps.Stop();
 
@@ -29,7 +31,7 @@ public class Tower : Entity
         Physics.IgnoreCollision(transform.GetChild(0).GetComponent<Collider>(), 
                                 towerPivot.transform.GetChild(0).GetComponent<Collider>());
 
-        healthBar.SetupK(health);
+        healthBar.SetupK(Health);
     }
 
     void FixedUpdate()
@@ -39,7 +41,7 @@ public class Tower : Entity
                                                             transform.localEulerAngles.y, 
                                                             towerPivot.transform.localEulerAngles.z);
 
-        if (health <= 0)
+        if (Health <= 0)
         {
             SetGunsFiring(false);
             return;
@@ -48,7 +50,7 @@ public class Tower : Entity
         float distance = (Player.Position - transform.position).magnitude;
         Vector3 dirToTarget = (Player.Position - transform.position).normalized;
 
-        healthBar.Do(health, distance, radius, dirToTarget, transform.up);
+        healthBar.Do(Health, distance, radius, dirToTarget, transform.up);
 
         if (Player.Health > 0)
         {
@@ -76,7 +78,7 @@ public class Tower : Entity
 
     IEnumerator DieCoroutine()
     {
-        if(health <= 0)
+        if(Health <= 0)
         {
             ps.Play();
             Player.Score += scoreGetAmount;
