@@ -16,11 +16,15 @@ public class CameraMovementInMainMenu : MonoBehaviour
         else
             Instance = this;
 
-        SceneManager.sceneLoaded += OnSceneLoaded;
+        Camera.main.gameObject.GetComponent<Rigidbody>().AddTorque(Camera.main.transform.up * 10f);
+
+        //SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
+    /*
     void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
         Camera.main.gameObject.GetComponent<Rigidbody>().AddTorque(Camera.main.transform.up * 10f);
     }
+    */
 }
