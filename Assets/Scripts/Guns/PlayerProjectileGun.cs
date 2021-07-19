@@ -6,10 +6,18 @@ public class PlayerProjectileGun : Gun
 {
     [SerializeField] float projectileSpeed;
     [SerializeField] GameObject projectilePrototype;
-    [SerializeField] int fireButtonIndex;
+
+    [SerializeField] GunType type;
+
+    private KeyCode fireKey;
 
     void Awake()
     {
+        if (type == GunType.Main)
+            fireKey = SerializeManager.Instance.GetControls(ControlsType.ShootPrimary);
+        else if (type == GunType.Side)
+            fireKey = SerializeManager.Instance.GetControls(ControlsType.ShootSecondary);
+
         StartCoroutine(FireCoroutine());
     }
 
@@ -25,7 +33,7 @@ public class PlayerProjectileGun : Gun
 
     private IEnumerator FireCoroutine()
     {
-        if (Input.GetMouseButton(fireButtonIndex) & Player.Energy > 0 & !UI.IsPaused)
+        if (Input.GetKey(fireKey) & Player.Energy > 0 & !UI.IsPaused)
         {
             Fire();
             yield return new WaitForSeconds(cooldown);    

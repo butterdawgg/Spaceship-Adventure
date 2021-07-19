@@ -171,7 +171,7 @@ GameObject:
   - component: {fileID: 8256522124781532024}
   - component: {fileID: 1396008782876690460}
   m_Layer: 11
-  m_Name: PlayerPlasmaLauncher
+  m_Name: PlayerMachinegun
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -209,10 +209,10 @@ MonoBehaviour:
   damage: 30
   cooldown: 0.1
   energyDraw: 1
-  fireButtonIndex: 1
+  projectileSpeed: 300
   projectilePrototype: {fileID: 304391207230958630, guid: ba99a98d46e34c548a42d4f403b8d614,
     type: 3}
-  projectileSpeed: 300
+  type: 1
 --- !u!1 &7470412806501304471
 GameObject:
   m_ObjectHideFlags: 0

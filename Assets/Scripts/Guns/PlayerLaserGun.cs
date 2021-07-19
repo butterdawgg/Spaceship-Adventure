@@ -6,7 +6,10 @@ public class PlayerLaserGun : Gun
 {
     [SerializeField] float rayDuration;
     [SerializeField] Transform rayEndPoint;
-    [SerializeField] int fireButtonIndex;
+
+    [SerializeField] GunType type;
+
+    private KeyCode fireKey;
 
     private LineRenderer lr;
     private Collider hitCollider;
@@ -15,6 +18,11 @@ public class PlayerLaserGun : Gun
     {
         lr = GetComponent<LineRenderer>();
         lr.forceRenderingOff = true;
+
+        if (type == GunType.Main)
+            fireKey = SerializeManager.Instance.GetControls(ControlsType.ShootPrimary);
+        else if (type == GunType.Side)
+            fireKey = SerializeManager.Instance.GetControls(ControlsType.ShootSecondary);
 
         if (cooldown <= 0 || rayDuration <= 0)
             StartCoroutine(BeamFireCoroutine());
@@ -39,7 +47,7 @@ public class PlayerLaserGun : Gun
 
     private IEnumerator PulseFireCoroutine()
     {
-        if (Input.GetMouseButton(fireButtonIndex) & Player.Energy > 0 & !UI.IsPaused)
+        if (Input.GetKey(fireKey) & Player.Energy > 0 & !UI.IsPaused)
         {
             if(hitCollider != null)
             {
@@ -69,7 +77,7 @@ public class PlayerLaserGun : Gun
 
     private IEnumerator BeamFireCoroutine()
     {
-        if (Input.GetMouseButton(fireButtonIndex) & Player.Energy > 0 & !UI.IsPaused)
+        if (Input.GetKey(fireKey) & Player.Energy > 0 & !UI.IsPaused)
         {
             if (hitCollider != null)
             {
