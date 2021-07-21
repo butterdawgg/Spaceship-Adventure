@@ -16,15 +16,23 @@ public class CameraMovementInMainMenu : MonoBehaviour
         else
             Instance = this;
 
-        Camera.main.gameObject.GetComponent<Rigidbody>().AddTorque(Camera.main.transform.up * 10f);
-
-        //SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
-    /*
-    void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    public void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {
-        Camera.main.gameObject.GetComponent<Rigidbody>().AddTorque(Camera.main.transform.up * 10f);
+        StartCoroutine(RotateCoroutine());
     }
-    */
+
+    public IEnumerator RotateCoroutine()
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+            RenderSettings.skybox.SetFloat("_Rotation", Time.time * 10f);
+        else
+            RenderSettings.skybox.SetFloat("_Rotation", 0f);
+
+        yield return new WaitForEndOfFrame();
+
+        StartCoroutine(RotateCoroutine());
+    }
 }

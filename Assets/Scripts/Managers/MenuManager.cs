@@ -12,9 +12,12 @@ public class MenuManager : MonoBehaviour
     [SerializeField] Button playButton;
     [SerializeField] Button exitButton;
     [SerializeField] Button optionsButton;
+    [SerializeField] Button shopButton;
+    [SerializeField] Button shopBackButton;
 
 
     [SerializeField] GameObject options;
+    [SerializeField] GameObject shop;
 
     [SerializeField] Button optionsBackButton;
     [SerializeField] Slider masterVolumeSlider;
@@ -29,6 +32,8 @@ public class MenuManager : MonoBehaviour
         exitButton.onClick.AddListener(OnClickExitButton);
         optionsButton.onClick.AddListener(OnClickOptionsButton);
         optionsBackButton.onClick.AddListener(OnClickOptionsBackButton);
+        shopButton.onClick.AddListener(OnClickShopButton);
+        shopBackButton.onClick.AddListener(OnClickShopBackButton);
 
         masterVolumeSlider.onValueChanged.AddListener(OnChangeValueMasterVolumeSlider);
         SFXVolumeSlider.onValueChanged.AddListener(OnChangeValueSFXVolumeSlider);
@@ -47,6 +52,18 @@ public class MenuManager : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
         Application.Quit();
+    }
+    public void OnClickShopButton()
+    {
+        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        mainMenu.SetActive(false);
+        shop.SetActive(true);     
+    }
+    public void OnClickShopBackButton()
+    {
+        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        mainMenu.SetActive(true);
+        shop.SetActive(false);
     }
 
     public void OnClickOptionsButton()
