@@ -5,16 +5,17 @@ using UnityEngine;
 
 public enum FloatType
 {
-    MasterVolume,
-    SfxVolume,
-    MusicVolume,
-    HighScore
+    MasterVolume = 0,
+    SfxVolume = 1,
+    MusicVolume = 2,
+    HighScore = 3,
+    Money = 4
 }
 
 public enum BoolType
 {
-    MouseInversionXAxis,
-    MouseInversionYAxis,
+    MouseInversionXAxis = 0,
+    MouseInversionYAxis = 1,
 }
 
 public enum ControlsType
@@ -31,18 +32,18 @@ public enum ControlsType
     RollRight = 9
 }
 
-public enum ControlsDefault
+public enum ControlsDefaults
 {
-    Mouse0,
-    Mouse1,
-    W,
-    S,
-    A,
-    D,
-    Space,
-    LeftShift,
-    Q,
-    E
+    Mouse0 = 0,
+    Mouse1 = 1,
+    W = 2,
+    S = 3,
+    Q = 4,
+    E = 5,
+    Space = 6,
+    LeftShift = 7,
+    A = 8,
+    D = 9
 }
 
 public class SerializeManager
@@ -85,6 +86,6 @@ public class SerializeManager
         if (!string.IsNullOrEmpty(value))
             return (KeyCode)Enum.Parse(typeof(KeyCode), value.ToString());
         else
-            return (KeyCode)Enum.Parse(typeof(KeyCode), ((ControlsDefault)type).ToString());
+            return (KeyCode)Enum.Parse(typeof(KeyCode), ((ControlsDefaults)type).ToString());
     }
 }
