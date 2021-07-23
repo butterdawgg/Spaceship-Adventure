@@ -83,6 +83,8 @@
     <Compile Include="Assets\Scripts\Misc\Pickable.cs" />
     <Compile Include="Assets\Scripts\Misc\Projectile.cs" />
     <Compile Include="Assets\Scripts\Player.cs" />
+    <Compile Include="Assets\Scripts\Selectable.cs" />
+    <Compile Include="Assets\Scripts\ShipDetector.cs" />
     <Compile Include="Assets\Scripts\UtilityClasses\ControlsWindow.cs" />
     <Compile Include="Assets\Scripts\UtilityClasses\Drop.cs" />
     <Compile Include="Assets\Scripts\UtilityClasses\HealthBar.cs" />
