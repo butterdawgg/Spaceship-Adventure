@@ -11,4 +11,6 @@ public class Item : ScriptableObject
     public GameObject prefab;
     public IntType idType;
     public int id;
+    public float unlockPrice;
+    public bool isLocked;
 }

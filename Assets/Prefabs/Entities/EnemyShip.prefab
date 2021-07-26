@@ -4937,6 +4937,8 @@ MonoBehaviour:
     chance: {x: 2, y: 3}
   - drop: {fileID: 7396254203944592656, guid: 8ea8e1a4a31adad4daae6dfa7bfffe40, type: 3}
     chance: {x: -1, y: 1}
+  - drop: {fileID: 7396254203944592656, guid: 08f33dd41b676f34d8eb1ad0e91e6161, type: 3}
+    chance: {x: 1, y: 2}
   body: {fileID: 3175957331826152382}
   ps: {fileID: 5443905348166023868}
   maxHealth: 250

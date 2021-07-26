@@ -18,3 +18,5 @@ MonoBehaviour:
   prefab: {fileID: 560589661178939556, guid: ee91f1c881723774d9b10110f769178c, type: 3}
   idType: 0
   id: 1
+  unlockPrice: 200
+  isLocked: 1

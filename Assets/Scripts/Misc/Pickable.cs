@@ -5,7 +5,8 @@ using UnityEngine;
 public enum PickableType
 {
     Life,
-    Energy
+    Energy,
+    Money
 }
 
 public class Pickable : MonoBehaviour
@@ -39,6 +40,8 @@ public class Pickable : MonoBehaviour
             Player.Health += amount;
         else if (pickableType == PickableType.Energy)
             Player.Energy += amount;
+        else if (pickableType == PickableType.Money)
+            SerializeManager.Instance.SetFloat(FloatType.Money, SerializeManager.Instance.GetFloat(FloatType.Money) + amount);
 
         FindObjectOfType<AudioManager>().PlaySound("Pickup");
 

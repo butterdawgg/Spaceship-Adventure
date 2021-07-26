@@ -10,10 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f678e837f6aaf34a9f829f8e5adfcf2, type: 3}
-  m_Name: Machinegun 1
+  m_Name: PulseLaser
   m_EditorClassIdentifier: 
-  name: Machine Gun
-  description: Light machine gun. Fires fast but has low damage.
-  prefab: {fileID: 5939570296947245577, guid: a681ed86164991949a90064a862b9b44, type: 3}
-  idType: 2
-  id: 0
+  name: Pulse Laser
+  description: Fires short, powerful laser beams.
+  prefab: {fileID: 5939570296947245577, guid: 61cd48690732c344fb0737911e5881c5, type: 3}
+  idType: 1
+  id: 2
+  unlockPrice: 50
+  isLocked: 1
