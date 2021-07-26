@@ -16,7 +16,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] ParticleSystem ps;
     [SerializeField] GameObject render;
-    [SerializeField] GameObject[] hardpoints;
+    public GameObject[] hardpoints;
 
 
     //Public properties:
@@ -141,9 +141,9 @@ public class Player : MonoBehaviour
         {
             ps.Play();
             Destroy(render);
-            for (int i = 0; i < hardpoints.Length; i++)
-                Destroy(hardpoints[i]);
-            FindObjectOfType<AudioManager>().PlaySound("Explosion");
+            foreach (GameObject h in hardpoints)
+                Destroy(h);
+            AudioManager.Instance.PlaySound("Explosion");
             yield return new WaitForSeconds(2f);
             if (HighScore < Score)
                 HighScore = Score;

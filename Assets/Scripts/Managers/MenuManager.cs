@@ -57,7 +57,7 @@ public class MenuManager : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
         mainMenu.SetActive(false);
-        shop.SetActive(true);     
+        shop.SetActive(true);
     }
     public void OnClickShopBackButton()
     {

@@ -18,6 +18,12 @@ public enum BoolType
     MouseInversionYAxis = 1,
 }
 
+public enum IntType
+{
+    ActiveShipId = 0,
+    ActiveGunId = 1,
+}
+
 public enum ControlsType
 {
     ShootPrimary = 0,
@@ -65,6 +71,16 @@ public class SerializeManager
             return PlayerPrefs.GetFloat(type.ToString()); 
         else
             return 0f; 
+    }
+
+    public void SetInt(IntType type, int value) { PlayerPrefs.SetInt(type.ToString(), value); }
+
+    public int GetInt(IntType type)
+    {
+        if (PlayerPrefs.HasKey(type.ToString()))
+            return PlayerPrefs.GetInt(type.ToString());
+        else
+            return 0;
     }
 
     public void SetBool(BoolType type, bool value) { PlayerPrefs.SetInt(type.ToString(), Convert.ToInt32(value)); }

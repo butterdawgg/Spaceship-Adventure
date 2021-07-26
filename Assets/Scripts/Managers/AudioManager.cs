@@ -4,10 +4,19 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance;
+
     [SerializeField] Sound[] sounds;
 
     void Awake()
     {
+        DontDestroyOnLoad(gameObject);
+
+        if (Instance != null)
+            Destroy(gameObject);
+        else
+            Instance = this;
+
         for (int i = 0; i < sounds.Length; i++)
         {
             sounds[i].source = gameObject.AddComponent<AudioSource>();
