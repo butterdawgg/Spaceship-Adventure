@@ -24,7 +24,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4542669239021351476}
   - component: {fileID: 4620380339846709971}
-  - component: {fileID: 8070215230385686318}
   m_Layer: 11
   m_Name: muzzlePoint
   m_TagString: Untagged
@@ -43,9 +42,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0.182, z: 0.721}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4741009382317212432}
+  - {fileID: 2260185627959192396}
   m_Father: {fileID: 8256522124781532024}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!120 &4620380339846709971
 LineRenderer:
@@ -144,52 +143,6 @@ LineRenderer:
     generateLightingData: 0
   m_UseWorldSpace: 1
   m_Loop: 0
---- !u!114 &8070215230385686318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1425311901576838369}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b4723ed37dbc34d41a86c0c02198b31f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 20481
-  endPoint: {fileID: 4741009382317212432}
---- !u!1 &5056934108787400164
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 4741009382317212432}
-  m_Layer: 11
-  m_Name: laserEndPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4741009382317212432
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5056934108787400164}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4542669239021351476}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &5939570296947245577
 GameObject:
   m_ObjectHideFlags: 0
@@ -219,7 +172,6 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 2260185627959192396}
   - {fileID: 253422473743699761}
   - {fileID: 4542669239021351476}
   m_Father: {fileID: 0}
@@ -241,12 +193,11 @@ MonoBehaviour:
   damage: 100
   cooldown: 0.2
   energyDraw: 5
-  fireButtonIndex: 0
   rayDuration: 0.1
   rayEndPoint: {fileID: 2260185627959192396}
   layerMask:
     serializedVersion: 2
-    m_Bits: 4097
+    m_Bits: 4609
 --- !u!120 &4666276994664086546
 LineRenderer:
   m_ObjectHideFlags: 0
@@ -368,10 +319,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6725717872625466825}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.182, z: 0.721}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 8256522124781532024}
+  m_Father: {fileID: 4542669239021351476}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &292433915726358746
@@ -419,7 +370,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6a15939638e5d3542809e25b565d942a,
         type: 3}
       propertyPath: m_RootOrder
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6a15939638e5d3542809e25b565d942a,
         type: 3}

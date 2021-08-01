@@ -56,6 +56,7 @@ public class UI : MonoBehaviour
         pauseMenu.SetActive(false);
         Time.timeScale = 1f;
         pause = false;
+        Cursor.visible = false;
     }
 
     void Pause()
@@ -63,13 +64,15 @@ public class UI : MonoBehaviour
         pauseMenu.SetActive(true);
         Time.timeScale = 0f;
         pause = true;
+        Cursor.visible = true;
     }
 
     public void ExitToMenu()
     {
         FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
-        System.Diagnostics.Process.Start(Application.dataPath.Replace("_Data", ".exe"));
-        Application.Quit();
+        Resume();
+        Cursor.visible = true;
+        SceneManager.LoadScene(0);
     }
 
     public void ResetHighScore()

@@ -21,6 +21,11 @@ public class Selectable : MonoBehaviour
         DeselectAll();
     }
 
+    void Update()
+    {
+        item.isLocked = SerializeManager.Instance.GetItemLockedState(item);
+    }
+
     public void Select()
     {
         transform.localScale = new Vector3(1.2f, 1.2f, 1.2f);
@@ -32,8 +37,8 @@ public class Selectable : MonoBehaviour
         }
         else
         {
-            SerializeManager.Instance.SetInt(item.idType, item.id);
             selectedText.gameObject.SetActive(true);
+            SerializeManager.Instance.SetInt(item.idType, item.id);
             Debug.Log(item.name + " (id: " + item.id + ") is selected as active");
         }
     }
@@ -56,7 +61,7 @@ public class Selectable : MonoBehaviour
     {
         if (item.unlockPrice <= SerializeManager.Instance.GetFloat(FloatType.Money))
         {
-            item.isLocked = false;
+            SerializeManager.Instance.SetItemLockedState(item, false);
             SerializeManager.Instance.SetFloat(FloatType.Money, SerializeManager.Instance.GetFloat(FloatType.Money) - item.unlockPrice);
         }
     }

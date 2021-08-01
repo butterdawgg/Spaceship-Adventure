@@ -25,6 +25,7 @@ public class Player : MonoBehaviour
     public static float Score { get { return _score; } set { if (value > 0) _score = value; else _score = 0; } }
     public static float HighScore { get { return _highScore; } set { if (value > 0) _highScore = value; else _highScore = 0; } }
     public static Vector3 Position { get; private set; }
+    public static Camera playerCamera { get; private set; }
 
 
     //Private fields:
@@ -64,6 +65,8 @@ public class Player : MonoBehaviour
 
         screenCenter.x = Screen.width * 0.5f;
         screenCenter.y = Screen.height * 0.5f;
+
+        playerCamera = GetComponentInChildren<Camera>();
 
         StartCoroutine(DieCoroutine());
     }

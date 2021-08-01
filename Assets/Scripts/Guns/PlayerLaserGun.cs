@@ -7,7 +7,7 @@ public class PlayerLaserGun : Gun
     [SerializeField] float rayDuration;
     [SerializeField] Transform rayEndPoint;
 
-    [SerializeField] GunType type;
+    [SerializeField] LayerMask layerMask;
 
     private KeyCode fireKey;
 
@@ -19,10 +19,7 @@ public class PlayerLaserGun : Gun
         lr = GetComponent<LineRenderer>();
         lr.forceRenderingOff = true;
 
-        if (type == GunType.Main)
-            fireKey = SerializeManager.Instance.GetControls(ControlsType.ShootPrimary);
-        else if (type == GunType.Side)
-            fireKey = SerializeManager.Instance.GetControls(ControlsType.ShootSecondary);
+        fireKey = SerializeManager.Instance.GetControls(ControlsType.Shoot);
 
         if (cooldown <= 0 || rayDuration <= 0)
             StartCoroutine(BeamFireCoroutine());
@@ -32,14 +29,28 @@ public class PlayerLaserGun : Gun
 
     void LateUpdate()
     {
-        Ray ray = new Ray(muzzlePoint.position, muzzlePoint.forward);
-        if (Physics.Raycast(ray, out RaycastHit hit, 1000f))
+        rayEndPoint.localPosition = Vector3.zero;
+        rayEndPoint.localEulerAngles = Vector3.zero;
+
+        muzzlePoint.localPosition = Vector3.zero;
+        muzzlePoint.localEulerAngles = Vector3.zero;
+
+        Ray ray = new Ray(Player.playerCamera.transform.position, Player.playerCamera.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, layerMask))
         {
-            rayEndPoint.localPosition = new Vector3(0f, 0f, hit.distance);
-            hitCollider = hit.collider;
+            muzzlePoint.LookAt(hit.point);
+            Ray ray1 = new Ray(muzzlePoint.position, muzzlePoint.forward);
+            if(Physics.Raycast(ray1, out RaycastHit hit1, layerMask))
+            {
+                rayEndPoint.localPosition = new Vector3(0f, 0f, hit1.distance);
+                hitCollider = hit1.collider;
+            }
         }
         else
-            rayEndPoint.localPosition = new Vector3(0f, 0f, 1000f);
+        {
+            rayEndPoint.position = ray.GetPoint(100f);
+            hitCollider = null;
+        }
 
         lr.SetPosition(0, muzzlePoint.position);
         lr.SetPosition(1, rayEndPoint.position);

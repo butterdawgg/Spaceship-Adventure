@@ -26,16 +26,15 @@ public enum IntType
 
 public enum ControlsType
 {
-    ShootPrimary = 0,
-    ShootSecondary = 1,
-    FlyForward = 2,
-    FlyBackward = 3,
-    FlyLeft = 4,
-    FlyRight = 5,
-    FlyUp = 6,
-    FlyDown = 7,
-    RollLeft = 8,
-    RollRight = 9
+    Shoot = 0,
+    FlyForward = 1,
+    FlyBackward = 2,
+    FlyLeft = 3,
+    FlyRight = 4,
+    FlyUp = 5,
+    FlyDown = 6,
+    RollLeft = 7,
+    RollRight = 8
 }
 
 public enum ControlsDefaults
@@ -103,5 +102,18 @@ public class SerializeManager
             return (KeyCode)Enum.Parse(typeof(KeyCode), value.ToString());
         else
             return (KeyCode)Enum.Parse(typeof(KeyCode), ((ControlsDefaults)type).ToString());
+    }
+
+    public void SetItemLockedState(Item item, bool isLocked)
+    {
+        PlayerPrefs.SetInt(item.name + "_" + item.id, Convert.ToInt32(isLocked));
+    }
+
+    public bool GetItemLockedState(Item item)
+    {
+        if (PlayerPrefs.HasKey(item.name + "_" + item.id))
+            return Convert.ToBoolean(PlayerPrefs.GetInt(item.name + "_" + item.id));
+        else
+            return true;
     }
 }

@@ -13,13 +13,10 @@ public class EntityGun : Gun
         StartCoroutine(FireCoroutine());
     }
 
-    private void Fire()
+    private void Fire() 
     {
         GameObject projectile = Instantiate(projectilePrototype, muzzlePoint.transform.position, transform.rotation);
-        projectile.GetComponent<Projectile>().Damage = damage;
-        projectile.GetComponent<Rigidbody>().velocity = projectile.transform.forward * projectileSpeed;
-        projectile.GetComponent<Projectile>().IsFriendly = false;
-
+        projectile.GetComponent<Projectile>().Launch(damage, projectileSpeed, false);
         FindObjectOfType<AudioManager>().PlaySound("EnemyFire");
     }
 
