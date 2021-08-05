@@ -69,15 +69,17 @@ public class UI : MonoBehaviour
 
     public void ExitToMenu()
     {
-        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        AudioManager.Instance.PlaySound("ButtonClick");
         Resume();
         Cursor.visible = true;
+        if (Player.HighScore < Player.Score)
+            Player.HighScore = Player.Score;
         SceneManager.LoadScene(0);
     }
 
     public void ResetHighScore()
     {
-        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        AudioManager.Instance.PlaySound("ButtonClick");
         Player.HighScore = 0f;
         SerializeManager.Instance.SetFloat(FloatType.HighScore, Player.HighScore);
     }

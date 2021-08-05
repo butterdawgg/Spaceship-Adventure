@@ -157,12 +157,6 @@ public class Player : MonoBehaviour
         StartCoroutine(DieCoroutine());
     }
 
-    public void ResetHighScore()
-    {
-        HighScore = 0f;
-        SerializeManager.Instance.SetFloat(FloatType.HighScore, HighScore);
-    }
-
     void OnDisable()
     {
         SerializeManager.Instance.SetFloat(FloatType.HighScore, HighScore);
