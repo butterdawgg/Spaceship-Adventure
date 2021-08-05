@@ -51,6 +51,13 @@ public enum ControlsDefaults
     D = 9
 }
 
+public enum Difficulty
+{
+    Easy = 1,
+    Medium = 2,
+    Hard = 4
+}
+
 public class SerializeManager
 {
     public static SerializeManager Instance { get; }
@@ -62,7 +69,10 @@ public class SerializeManager
 
     private SerializeManager() { }
 
-    public void SetFloat(FloatType type, float value) { PlayerPrefs.SetFloat(type.ToString(), value); }
+    public void SetFloat(FloatType type, float value) 
+    { 
+        PlayerPrefs.SetFloat(type.ToString(), value);
+    }
 
     public float GetFloat(FloatType type) 
     { 
@@ -72,7 +82,10 @@ public class SerializeManager
             return 0f; 
     }
 
-    public void SetInt(IntType type, int value) { PlayerPrefs.SetInt(type.ToString(), value); }
+    public void SetInt(IntType type, int value) 
+    { 
+        PlayerPrefs.SetInt(type.ToString(), value);
+    }
 
     public int GetInt(IntType type)
     {
@@ -82,7 +95,10 @@ public class SerializeManager
             return 0;
     }
 
-    public void SetBool(BoolType type, bool value) { PlayerPrefs.SetInt(type.ToString(), Convert.ToInt32(value)); }
+    public void SetBool(BoolType type, bool value) 
+    {
+        PlayerPrefs.SetInt(type.ToString(), Convert.ToInt32(value)); 
+    }
 
     public bool GetBool(BoolType type) 
     { 
@@ -92,7 +108,10 @@ public class SerializeManager
             return false; 
     }
 
-    public void SetControls(ControlsType type, KeyCode value) { PlayerPrefs.SetString(type.ToString(), value.ToString()); }
+    public void SetControls(ControlsType type, KeyCode value) 
+    { 
+        PlayerPrefs.SetString(type.ToString(), value.ToString()); 
+    }
 
     public KeyCode GetControls(ControlsType type) 
     {
@@ -115,5 +134,23 @@ public class SerializeManager
             return Convert.ToBoolean(PlayerPrefs.GetInt(item.name + "_" + item.id));
         else
             return true;
+    }
+
+    public void SetDifficulty(Difficulty value)
+    {
+        PlayerPrefs.SetInt("CurrentDifficulty", (int)value);
+    }
+
+    public Difficulty GetDifficulty()
+    {
+        if (PlayerPrefs.HasKey("CurrentDifficulty"))
+            return (Difficulty)PlayerPrefs.GetInt("CurrentDifficulty");
+        else 
+            return Difficulty.Easy;
+    }
+
+    public float GetDifficultyCoefficient()
+    {
+        return (int)GetDifficulty() * 0.25f;
     }
 }

@@ -98,7 +98,7 @@ public class Enemy : Entity
             Destroy(body);
             Destroy(ps1.gameObject);
             healthBar.Destroy();
-            FindObjectOfType<AudioManager>().PlaySound("Explosion");
+            AudioManager.Instance.PlaySound("Explosion");
             for (int i = 0; i < hardpoints.Length; i++)
                 Destroy(hardpoints[i]);
             yield return new WaitForSeconds(0.5f);

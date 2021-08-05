@@ -14,6 +14,8 @@ public class Selectable : MonoBehaviour
 
     void Awake()
     {
+        //SerializeManager.Instance.SetItemLockedState(item, true);
+        //SerializeManager.Instance.SetFloat(FloatType.Money, 0f);
         nameText.text = item.name;
         descriptionText.text = item.description;
         unlockButton.onClick.AddListener(OnClickUnlockButton);
@@ -61,6 +63,7 @@ public class Selectable : MonoBehaviour
     {
         if (item.unlockPrice <= SerializeManager.Instance.GetFloat(FloatType.Money))
         {
+            AudioManager.Instance.PlaySound("ButtonClick");
             SerializeManager.Instance.SetItemLockedState(item, false);
             SerializeManager.Instance.SetFloat(FloatType.Money, SerializeManager.Instance.GetFloat(FloatType.Money) - item.unlockPrice);
         }

@@ -29,27 +29,26 @@ public class PlayerLaserGun : Gun
 
     void LateUpdate()
     {
-        rayEndPoint.localPosition = Vector3.zero;
-        rayEndPoint.localEulerAngles = Vector3.zero;
-
         muzzlePoint.localPosition = Vector3.zero;
         muzzlePoint.localEulerAngles = Vector3.zero;
 
         Ray ray = new Ray(Player.playerCamera.transform.position, Player.playerCamera.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, layerMask))
         {
-            muzzlePoint.LookAt(hit.point);
-            Ray ray1 = new Ray(muzzlePoint.position, muzzlePoint.forward);
+            //rayEndPoint.position = ray.GetPoint(hit.distance);
+            //hitCollider = hit.collider;
+            //muzzlePoint.LookAt(hit.point);
+            Ray ray1 = new Ray(muzzlePoint.position, (ray.GetPoint(hit.distance) - muzzlePoint.position).normalized);
             if(Physics.Raycast(ray1, out RaycastHit hit1, layerMask))
             {
-                rayEndPoint.localPosition = new Vector3(0f, 0f, hit1.distance);
+                rayEndPoint.position = ray1.GetPoint(hit1.distance);
                 hitCollider = hit1.collider;
             }
         }
         else
         {
             rayEndPoint.position = ray.GetPoint(100f);
-            hitCollider = null;
+            //hitCollider = null;
         }
 
         lr.SetPosition(0, muzzlePoint.position);
@@ -65,7 +64,7 @@ public class PlayerLaserGun : Gun
                 if (hitCollider.gameObject.TryGetComponent<Entity>(out Entity entity))
                 {
                     entity.Health -= damage;
-                    FindObjectOfType<AudioManager>().PlaySound("EnemyHit");
+                    AudioManager.Instance.PlaySound("EnemyHit");
                 }
             }
 
@@ -73,7 +72,7 @@ public class PlayerLaserGun : Gun
 
             Player.Energy -= energyDraw;
 
-            FindObjectOfType<AudioManager>().PlaySound("PlayerFireLaser");
+            AudioManager.Instance.PlaySound("PlayerFireLaser");
 
             yield return new WaitForSeconds(rayDuration);
 
@@ -100,8 +99,8 @@ public class PlayerLaserGun : Gun
             
             Player.Energy -= energyDraw * 0.1f;
 
-            FindObjectOfType<AudioManager>().StopSound("PlayerFireBeamLaser");
-            FindObjectOfType<AudioManager>().PlaySound("PlayerFireBeamLaser");
+            AudioManager.Instance.StopSound("PlayerFireBeamLaser");
+            AudioManager.Instance.PlaySound("PlayerFireBeamLaser");
 
             yield return new WaitForSeconds(0.1f);
         }

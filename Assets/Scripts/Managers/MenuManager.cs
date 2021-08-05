@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
     [SerializeField] Button optionsButton;
     [SerializeField] Button shopButton;
     [SerializeField] Button shopBackButton;
+    [SerializeField] Text highScoreText;
 
 
     [SerializeField] GameObject options;
@@ -42,33 +43,38 @@ public class MenuManager : MonoBehaviour
         mouseInversionXAxisToggle.onValueChanged.AddListener(OnChangeValueMouseInversionXAxisToggle);
     }
 
+    void Update()
+    {
+        highScoreText.text = "HIGH SCORE: " + SerializeManager.Instance.GetFloat(FloatType.HighScore);
+    }
+
     public void OnClickPlayButton()
     {
-        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        AudioManager.Instance.PlaySound("ButtonClick");
         SceneManager.LoadScene(1);
     }
 
     public void OnClickExitButton()
     {
-        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        AudioManager.Instance.PlaySound("ButtonClick");
         Application.Quit();
     }
     public void OnClickShopButton()
     {
-        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        AudioManager.Instance.PlaySound("ButtonClick");
         mainMenu.SetActive(false);
         shop.SetActive(true);
     }
     public void OnClickShopBackButton()
     {
-        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        AudioManager.Instance.PlaySound("ButtonClick");
         mainMenu.SetActive(true);
         shop.SetActive(false);
     }
 
     public void OnClickOptionsButton()
     {
-        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        AudioManager.Instance.PlaySound("ButtonClick");
         mainMenu.SetActive(false);
         options.SetActive(true);
 
@@ -82,7 +88,7 @@ public class MenuManager : MonoBehaviour
 
     public void OnClickOptionsBackButton()
     {
-        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        AudioManager.Instance.PlaySound("ButtonClick");
         mainMenu.SetActive(true);
         options.SetActive(false);
     }
@@ -104,13 +110,13 @@ public class MenuManager : MonoBehaviour
 
     public void OnChangeValueMouseInversionYAxisToggle(bool value)
     {
-        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        AudioManager.Instance.PlaySound("ButtonClick");
         SerializeManager.Instance.SetBool(BoolType.MouseInversionYAxis, value);
     }
 
     public void OnChangeValueMouseInversionXAxisToggle(bool value)
     {
-        FindObjectOfType<AudioManager>().PlaySound("ButtonClick");
+        AudioManager.Instance.PlaySound("ButtonClick");
         SerializeManager.Instance.SetBool(BoolType.MouseInversionXAxis, value);
     }
 }

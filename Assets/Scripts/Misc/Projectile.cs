@@ -46,13 +46,13 @@ public class Projectile : MonoBehaviour
         if (other.gameObject.TryGetComponent(out Entity entity) & IsFriendly)
         {
             entity.Health -= Damage;
-            FindObjectOfType<AudioManager>().PlaySound("EnemyHit");
+            AudioManager.Instance.PlaySound("EnemyHit");
         }
         else if (other.gameObject.TryGetComponent(out Player player) & !IsFriendly)
         {
             Player.Health -= Damage;
             if (Player.Health > 0)
-                FindObjectOfType<AudioManager>().PlaySound("PlayerHit");
+                AudioManager.Instance.PlaySound("PlayerHit");
         }
     }
 }

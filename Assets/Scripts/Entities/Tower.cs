@@ -86,7 +86,7 @@ public class Tower : Entity
             healthBar.Destroy();
             for (int i = 0; i < hardpoints.Length; i++)
                 Destroy(hardpoints[i]);
-            FindObjectOfType<AudioManager>().PlaySound("Explosion");
+            AudioManager.Instance.PlaySound("Explosion");
             yield return new WaitForSeconds(0.5f);
             DropLoot();
             Destroy(gameObject);
