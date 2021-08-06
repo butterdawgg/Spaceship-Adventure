@@ -5030,8 +5030,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 381.29388, y: 301.30435, z: 336}
-  m_Center: {x: -15.597922, y: -13.648081, z: 0}
+  m_Size: {x: 386.6683, y: 224.267, z: 335.99997}
+  m_Center: {x: -18.285194, y: -2.0034032, z: 0}
 --- !u!1 &757194597
 GameObject:
   m_ObjectHideFlags: 0
@@ -8737,7 +8737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1320932596
 RectTransform:
   m_ObjectHideFlags: 0
@@ -9404,7 +9404,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7a9f2544e935c884294ab56a76ea268c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -100
+      value: -119
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a9f2544e935c884294ab56a76ea268c,
         type: 3}
@@ -9459,17 +9459,17 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 7a9f2544e935c884294ab56a76ea268c,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 35
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a9f2544e935c884294ab56a76ea268c,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 35
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 7a9f2544e935c884294ab56a76ea268c,
         type: 3}
       propertyPath: m_LocalScale.z
-      value: 35
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: -7635826562936255635, guid: 7a9f2544e935c884294ab56a76ea268c,
         type: 3}
@@ -9479,6 +9479,11 @@ PrefabInstance:
     - target: {fileID: -7635826562936255635, guid: 7a9f2544e935c884294ab56a76ea268c,
         type: 3}
       propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: cead839904afb5f4ba7068450c61b194, type: 2}
+    - target: {fileID: -7635826562936255635, guid: 7a9f2544e935c884294ab56a76ea268c,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
       value: 
       objectReference: {fileID: 2100000, guid: 8178dcef7b8f94146992abeb901bfe30, type: 2}
     - target: {fileID: 919132149155446097, guid: 7a9f2544e935c884294ab56a76ea268c,
@@ -9717,7 +9722,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1552788690
 RectTransform:
   m_ObjectHideFlags: 0

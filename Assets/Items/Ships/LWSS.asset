@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f678e837f6aaf34a9f829f8e5adfcf2, type: 3}
   m_Name: LWSS
   m_EditorClassIdentifier: 
-  name: LWSS-3 FS "Raven"
+  name: LWSS-41 model F
   description: Lightweight spaceship that is commonly used in special forces. Has
     increased speed and maneuverability in exchange for low health and energy amounts.
   prefab: {fileID: 560589661178939556, guid: ee91f1c881723774d9b10110f769178c, type: 3}
   idType: 0
   id: 1
   unlockPrice: 200
-  isLocked: 1
+  isLocked: 0

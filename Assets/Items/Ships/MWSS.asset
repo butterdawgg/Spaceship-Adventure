@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f678e837f6aaf34a9f829f8e5adfcf2, type: 3}
   m_Name: MWSS
   m_EditorClassIdentifier: 
-  name: MWSS-41 model S "Stampede"
+  name: MWSS-41 model S
   description: Very old space fighter. Is wasn't designed for open space battles,
     however "model S" has powerful enough thrusters and improved batteries' capacity.
     Has medium health and energy amounts.
