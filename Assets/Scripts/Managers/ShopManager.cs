@@ -13,18 +13,17 @@ public class ShopManager : MonoBehaviour
 
     [SerializeField] Transform raycast;
 
-    [SerializeField] Text moneyAmount;
+    [SerializeField] Text moneyText;
 
     void Awake()
     {
-        //SerializeManager.Instance.SetFloat(FloatType.Money, 0f);
         shipsButton.onClick.AddListener(OnClickShipsButton);
         gunsButton.onClick.AddListener(OnClickGunsButton);
     }
 
     void Update()
     {
-        moneyAmount.text = SerializeManager.Instance.GetFloat(FloatType.Money).ToString();
+        moneyText.text = "MONEY:" + SerializeManager.Instance.GetFloat(FloatType.Money).ToString();
         
         CheckSelectables();
     }
