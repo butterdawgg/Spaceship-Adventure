@@ -13523,6 +13523,24 @@ MonoBehaviour:
     pitch: 1
     soundType: 0
     source: {fileID: 0}
+  - name: Soundtrack1
+    clip: {fileID: 8300000, guid: 25172000437ca4f4b81bbaf851e142ec, type: 3}
+    volume: 1
+    pitch: 1
+    soundType: 1
+    source: {fileID: 0}
+  - name: Soundtrack2
+    clip: {fileID: 8300000, guid: 5b385d08cac55f041960a35bdadc147d, type: 3}
+    volume: 1
+    pitch: 1
+    soundType: 1
+    source: {fileID: 0}
+  - name: Soundtrack3
+    clip: {fileID: 8300000, guid: 7b840f68ab5884b4da1285e0595fb898, type: 3}
+    volume: 1
+    pitch: 1
+    soundType: 1
+    source: {fileID: 0}
 --- !u!4 &2098339941
 Transform:
   m_ObjectHideFlags: 0
