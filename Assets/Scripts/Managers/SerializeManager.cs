@@ -40,22 +40,14 @@ public enum ControlsType
 public enum ControlsDefaults
 {
     Mouse0 = 0,
-    Mouse1 = 1,
-    W = 2,
-    S = 3,
-    Q = 4,
-    E = 5,
-    Space = 6,
-    LeftShift = 7,
-    A = 8,
-    D = 9
-}
-
-public enum Difficulty
-{
-    Easy = 1,
-    Medium = 2,
-    Hard = 4
+    W = 1,
+    S = 2,
+    Q = 3,
+    E = 4,
+    Space = 5,
+    LeftShift = 6,
+    A = 7,
+    D = 8
 }
 
 public class SerializeManager
@@ -134,23 +126,5 @@ public class SerializeManager
             return Convert.ToBoolean(PlayerPrefs.GetInt(item.name + "_" + item.id));
         else
             return true;
-    }
-
-    public void SetDifficulty(Difficulty value)
-    {
-        PlayerPrefs.SetInt("CurrentDifficulty", (int)value);
-    }
-
-    public Difficulty GetDifficulty()
-    {
-        if (PlayerPrefs.HasKey("CurrentDifficulty"))
-            return (Difficulty)PlayerPrefs.GetInt("CurrentDifficulty");
-        else 
-            return Difficulty.Easy;
-    }
-
-    public float GetDifficultyCoefficient()
-    {
-        return (int)GetDifficulty() * 0.25f;
     }
 }

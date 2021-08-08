@@ -2013,7 +2013,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9622bf5fdfff9ff47ae118b061ff6ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 5
+  type: 4
 --- !u!1 &349120220
 GameObject:
   m_ObjectHideFlags: 0
@@ -2571,7 +2571,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9622bf5fdfff9ff47ae118b061ff6ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 3
+  type: 2
 --- !u!1 &462272741
 GameObject:
   m_ObjectHideFlags: 0
@@ -4244,7 +4244,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9622bf5fdfff9ff47ae118b061ff6ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 8
+  type: 7
 --- !u!1 &646185327
 GameObject:
   m_ObjectHideFlags: 0
@@ -4327,7 +4327,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 946099128}
   m_Direction: 2
   m_Value: 0.9889258
-  m_Size: 0.47710407
+  m_Size: 0.477104
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4553,7 +4553,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9622bf5fdfff9ff47ae118b061ff6ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 4
+  type: 3
 --- !u!1 &686465601
 GameObject:
   m_ObjectHideFlags: 0
@@ -7293,7 +7293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9622bf5fdfff9ff47ae118b061ff6ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 9
+  type: 8
 --- !u!1 &1090858149
 GameObject:
   m_ObjectHideFlags: 0
@@ -8304,7 +8304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9622bf5fdfff9ff47ae118b061ff6ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 2
+  type: 1
 --- !u!1 &1209581922
 GameObject:
   m_ObjectHideFlags: 0
@@ -11465,7 +11465,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9622bf5fdfff9ff47ae118b061ff6ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 7
+  type: 6
 --- !u!1 &1808630893
 GameObject:
   m_ObjectHideFlags: 0
@@ -13438,7 +13438,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9622bf5fdfff9ff47ae118b061ff6ac0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  type: 6
+  type: 5
 --- !u!1 &2098339939
 GameObject:
   m_ObjectHideFlags: 0
