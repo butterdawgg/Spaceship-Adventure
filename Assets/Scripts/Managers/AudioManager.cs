@@ -11,6 +11,7 @@ public class AudioManager : MonoBehaviour
     private Sound[] music;
     private Sound[] playedMusicBuffer;
 
+    private bool isCoroutineActive = false;
     private bool musicIsPlaying = false;
 
     void Awake()
@@ -53,8 +54,7 @@ public class AudioManager : MonoBehaviour
             playedMusicBuffer[i] = null;
         }
 
-        if (!musicIsPlaying)
-            StartCoroutine(PlayMusicCoroutine());
+        isCoroutineActive = false;
     }
 
     void FixedUpdate()
@@ -66,6 +66,9 @@ public class AudioManager : MonoBehaviour
             else if (sounds[i].soundType == SoundType.Music)
                 sounds[i].source.volume = sounds[i].volume * SerializeManager.Instance.GetFloat(FloatType.MusicVolume) * SerializeManager.Instance.GetFloat(FloatType.MasterVolume);
         }
+
+        if(!isCoroutineActive & !musicIsPlaying)
+            StartCoroutine(PlayMusicCoroutine());
     }
 
     public void PlaySound(string name)
@@ -86,8 +89,28 @@ public class AudioManager : MonoBehaviour
         }
     }
 
+    public bool IsMusicPlaying()
+    {
+        for (int i = 0; i < music.Length; i++)
+        {
+            if (music[i] != null)
+            {
+                if (music[i].source.isPlaying)
+                    return true;
+            }
+            else if (playedMusicBuffer[i] != null)
+            {
+                if (playedMusicBuffer[i].source.isPlaying)
+                    return true;
+            }
+        }
+        return false;
+    }
+
     public IEnumerator PlayMusicCoroutine()
     {
+        isCoroutineActive = true;
+
         int k = 0;
         for (int i = 0; i < music.Length; i++)
         {
@@ -109,10 +132,12 @@ public class AudioManager : MonoBehaviour
             random = Random.Range(0, music.Length);
         }
 
-        musicIsPlaying = false;
+        musicIsPlaying = true;
         PlaySound(music[random].name);
 
         yield return new WaitForSeconds(music[random].clip.length);
+
+        musicIsPlaying = false;
 
         for(int i = 0; i < playedMusicBuffer.Length; i++)
         {

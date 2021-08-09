@@ -22,7 +22,7 @@ public class Projectile : MonoBehaviour
 
         Ray ray = new Ray(Player.playerCamera.transform.position, Player.playerCamera.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, layerMask))
-            transform.LookAt(hit.point);
+            transform.LookAt(ray.GetPoint(hit.distance));
         else
             transform.LookAt(ray.GetPoint(100f));
 
