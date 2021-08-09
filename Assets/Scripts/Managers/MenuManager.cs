@@ -59,12 +59,14 @@ public class MenuManager : MonoBehaviour
         AudioManager.Instance.PlaySound("ButtonClick");
         Application.Quit();
     }
+
     public void OnClickShopButton()
     {
         AudioManager.Instance.PlaySound("ButtonClick");
         mainMenu.SetActive(false);
         shop.SetActive(true);
     }
+
     public void OnClickShopBackButton()
     {
         AudioManager.Instance.PlaySound("ButtonClick");

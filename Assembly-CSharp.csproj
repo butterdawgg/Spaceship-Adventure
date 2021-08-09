@@ -65,13 +65,12 @@
     <Compile Include="Assets\Scripts\Guns\PlayerLaserGun.cs" />
     <Compile Include="Assets\Scripts\Guns\PlayerProjectileGun.cs" />
     <Compile Include="Assets\Scripts\Managers\AudioManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\CameraMovementInMainMenu.cs" />
     <Compile Include="Assets\Scripts\Managers\ItemManager.cs" />
     <Compile Include="Assets\Scripts\Managers\KeybindManager.cs" />
     <Compile Include="Assets\Scripts\Managers\MenuManager.cs" />
-    <Compile Include="Assets\Scripts\Managers\MissionManager.cs" />
     <Compile Include="Assets\Scripts\Managers\SerializeManager.cs" />
     <Compile Include="Assets\Scripts\Managers\ShopManager.cs" />
+    <Compile Include="Assets\Scripts\Managers\SkyboxManager.cs" />
     <Compile Include="Assets\Scripts\Managers\UI.cs" />
     <Compile Include="Assets\Scripts\Managers\UnitSpawner.cs" />
     <Compile Include="Assets\Scripts\Misc\Crosshair.cs" />
@@ -85,7 +84,6 @@
     <Compile Include="Assets\Scripts\UtilityClasses\Drop.cs" />
     <Compile Include="Assets\Scripts\UtilityClasses\HealthBar.cs" />
     <Compile Include="Assets\Scripts\UtilityClasses\Item.cs" />
-    <Compile Include="Assets\Scripts\UtilityClasses\Mission.cs" />
     <Compile Include="Assets\Scripts\UtilityClasses\Sound.cs" />
     <Compile Include="Assets\SpaceSkies Free\Demo\Scripts\LookCamera.cs" />
     <Compile Include="Assets\SpaceSkies Free\Demo\Scripts\SkyboxChanger.cs" />

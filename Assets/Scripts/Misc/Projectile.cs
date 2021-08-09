@@ -15,26 +15,36 @@ public class Projectile : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
     
-    public void Launch(float damage, float speed, bool isFriendly)
+    public void LaunchFromPlayer(float damage, float speed, float inaccuracyAngle)
     {
         Damage = damage;
-        IsFriendly = isFriendly;
+        IsFriendly = true;
 
-        if (!IsFriendly)
-        {
-            Vector3 initialForward = transform.forward;
-            transform.LookAt(Player.Position);
-            if (Vector3.Angle(initialForward, transform.forward) > 10f)
-                transform.forward = initialForward;
-        }
+        Ray ray = new Ray(Player.playerCamera.transform.position, Player.playerCamera.transform.forward);
+        if (Physics.Raycast(ray, out RaycastHit hit, 100f, layerMask))
+            transform.LookAt(hit.point);
         else
-        {
-            Ray ray = new Ray(Player.playerCamera.transform.position, Player.playerCamera.transform.forward);
-            if (Physics.Raycast(ray, out RaycastHit hit, 100f, layerMask))
-                transform.LookAt(hit.point);
-            else
-                transform.LookAt(ray.GetPoint(100f));
-        }
+            transform.LookAt(ray.GetPoint(100f));
+
+        transform.localEulerAngles = new Vector3(
+            transform.localEulerAngles.x + Random.Range(-inaccuracyAngle, inaccuracyAngle),
+            transform.localEulerAngles.y + Random.Range(-inaccuracyAngle, inaccuracyAngle),
+            transform.localEulerAngles.z);
+
+        rb.velocity = transform.forward * speed;
+
+        Destroy(gameObject, 10f);
+    }
+
+    public void LaunchFromEnemy(float damage, float speed)
+    {
+        Damage = damage;
+        IsFriendly = false;
+
+        Vector3 initialForward = transform.forward;
+        transform.LookAt(Player.Position);
+        if (Vector3.Angle(initialForward, transform.forward) > 10f)
+            transform.forward = initialForward;
 
         rb.velocity = transform.forward * speed;
 

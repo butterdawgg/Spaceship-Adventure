@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerLaserGun : Gun
 {
     [SerializeField] float rayDuration;
-    [SerializeField] Transform rayEndPoint;
 
     [SerializeField] LayerMask layerMask;
 
@@ -29,28 +28,22 @@ public class PlayerLaserGun : Gun
 
     void LateUpdate()
     {
-        muzzlePoint.localPosition = Vector3.zero;
-        muzzlePoint.localEulerAngles = Vector3.zero;
-
         Ray ray = new Ray(Player.playerCamera.transform.position, Player.playerCamera.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, layerMask))
         {
             Ray ray1 = new Ray(muzzlePoint.position, (ray.GetPoint(hit.distance) - muzzlePoint.position).normalized);
             if (Physics.Raycast(ray1, out RaycastHit hit1, layerMask))
             {
-                //rayEndPoint.position = ray1.GetPoint(hit1.distance);
                 lr.SetPosition(1, ray1.GetPoint(hit1.distance));
                 hitCollider = hit1.collider;
             }
             else
             {
-                //rayEndPoint.position = ray.GetPoint(hit.distance);
                 lr.SetPosition(1, ray.GetPoint(hit.distance));
             }
         }
         else
         {
-            //rayEndPoint.position = ray.GetPoint(100f);
             lr.SetPosition(1, ray.GetPoint(100f));
         }
 

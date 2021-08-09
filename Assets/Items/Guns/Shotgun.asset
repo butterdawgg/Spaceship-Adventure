@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 4f678e837f6aaf34a9f829f8e5adfcf2, type: 3}
-  m_Name: PulseLaser
+  m_Name: Shotgun
   m_EditorClassIdentifier: 
-  name: Pulse Laser
-  description: Fires short, powerful laser beams.
-  prefab: {fileID: 5939570296947245577, guid: 61cd48690732c344fb0737911e5881c5, type: 3}
+  name: Shotgun
+  description: Inaccuratly fires several projectiles. Is good for close range
+  prefab: {fileID: 5939570296947245577, guid: 3005038db36460842aae39701f6d930a, type: 3}
   idType: 1
-  id: 2
-  unlockPrice: 100
+  id: 4
+  unlockPrice: 25
   isLocked: 1

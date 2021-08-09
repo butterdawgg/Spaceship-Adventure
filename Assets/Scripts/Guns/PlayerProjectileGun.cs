@@ -5,6 +5,8 @@ using UnityEngine;
 public class PlayerProjectileGun : Gun
 {
     [SerializeField] float projectileSpeed;
+    [SerializeField] int projectileCount;
+    [SerializeField] float inaccuracyAngle;
     [SerializeField] GameObject projectilePrototype;
 
     private KeyCode fireKey;
@@ -13,13 +15,21 @@ public class PlayerProjectileGun : Gun
     {
         fireKey = SerializeManager.Instance.GetControls(ControlsType.Shoot);
 
+        if (projectileCount <= 0)
+            projectileCount = 1;
+
         StartCoroutine(FireCoroutine());
     }
 
     private void Fire()
     {
-        GameObject projectile = Instantiate(projectilePrototype, muzzlePoint.transform.position, transform.rotation);
-        projectile.GetComponent<Projectile>().Launch(damage, projectileSpeed, true);
+        for(int i = 0; i <= projectileCount; i++)
+        {
+            GameObject projectile = Instantiate(projectilePrototype, muzzlePoint.transform.position, transform.rotation);
+            projectile.GetComponent<Projectile>().LaunchFromPlayer(damage, projectileSpeed, inaccuracyAngle);
+            Physics.IgnoreCollision(GetComponentInChildren<Collider>(), projectile.GetComponent<Collider>());
+        }
+
         Player.Energy -= energyDraw;
         FindObjectOfType<AudioManager>().PlaySound("PlayerFireProjectile");
     }
