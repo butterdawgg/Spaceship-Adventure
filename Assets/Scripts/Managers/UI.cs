@@ -15,7 +15,6 @@ public class UI : MonoBehaviour
     [SerializeField] Text highScoreTxt;
     [SerializeField] GameObject pauseMenu;
 
-    [SerializeField] Button resetHighScoreButton;
     [SerializeField] Button exitToMenuButton;
 
     public static bool IsPaused { get; private set; }
@@ -24,7 +23,6 @@ public class UI : MonoBehaviour
 
     void Start()
     {
-        resetHighScoreButton.onClick.AddListener(ResetHighScore);
         exitToMenuButton.onClick.AddListener(ExitToMenu);
         Pause();
     }
@@ -75,12 +73,5 @@ public class UI : MonoBehaviour
         if (Player.HighScore < Player.Score)
             Player.HighScore = Player.Score;
         SceneManager.LoadScene(0);
-    }
-
-    public void ResetHighScore()
-    {
-        AudioManager.Instance.PlaySound("ButtonClick");
-        Player.HighScore = 0f;
-        SerializeManager.Instance.SetFloat(FloatType.HighScore, Player.HighScore);
     }
 }
