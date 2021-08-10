@@ -22,7 +22,7 @@ TagManager:
   - EntityProjectile
   - Powerup
   - PowerupTrigger
-  - 
+  - RaycastTarget
   - 
   - 
   - 

@@ -97,7 +97,7 @@ MonoBehaviour:
   rayDuration: 0.1
   layerMask:
     serializedVersion: 2
-    m_Bits: 4097
+    m_Bits: 131073
 --- !u!120 &4666276994664086546
 LineRenderer:
   m_ObjectHideFlags: 0

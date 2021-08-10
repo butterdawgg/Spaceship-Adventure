@@ -92,7 +92,7 @@ MonoBehaviour:
   muzzlePoint: {fileID: 4542669239021351476}
   damage: 15
   energyDraw: 1
-  cooldown: 0.33
+  cooldown: 0.2
   projectileSpeed: 300
   projectileCount: 3
   inaccuracyAngle: 2

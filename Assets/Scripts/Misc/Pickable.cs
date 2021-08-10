@@ -43,7 +43,7 @@ public class Pickable : MonoBehaviour
         else if (pickableType == PickableType.Money)
             SerializeManager.Instance.SetFloat(FloatType.Money, SerializeManager.Instance.GetFloat(FloatType.Money) + amount);
 
-        FindObjectOfType<AudioManager>().PlaySound("Pickup");
+        AudioManager.Instance.PlaySound("Pickup");
 
         Destroy(gameObject);
     }

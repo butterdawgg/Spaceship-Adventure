@@ -23,7 +23,7 @@ public class PlayerProjectileGun : Gun
 
     private void Fire()
     {
-        for(int i = 0; i <= projectileCount; i++)
+        for(int i = 1; i <= projectileCount; i++)
         {
             GameObject projectile = Instantiate(projectilePrototype, muzzlePoint.transform.position, transform.rotation);
             projectile.GetComponent<Projectile>().LaunchFromPlayer(damage, projectileSpeed, inaccuracyAngle);
@@ -31,7 +31,7 @@ public class PlayerProjectileGun : Gun
         }
 
         Player.Energy -= energyDraw;
-        FindObjectOfType<AudioManager>().PlaySound("PlayerFireProjectile");
+        AudioManager.Instance.PlaySound("PlayerFireProjectile");
     }
 
     private IEnumerator FireCoroutine()

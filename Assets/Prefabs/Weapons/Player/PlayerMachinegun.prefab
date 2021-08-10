@@ -91,11 +91,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   muzzlePoint: {fileID: 4542669239021351476}
   damage: 30
-  energyDraw: 1
+  energyDraw: 0.5
   cooldown: 0.1
   projectileSpeed: 300
   projectileCount: 1
-  inaccuracyAngle: 0
+  inaccuracyAngle: 0.5
   projectilePrototype: {fileID: 304391207230958630, guid: ba99a98d46e34c548a42d4f403b8d614,
     type: 3}
 --- !u!1001 &889283420010117945

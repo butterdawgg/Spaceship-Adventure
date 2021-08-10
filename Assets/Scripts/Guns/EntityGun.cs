@@ -17,7 +17,7 @@ public class EntityGun : Gun
     {
         GameObject projectile = Instantiate(projectilePrototype, muzzlePoint.transform.position, transform.rotation);
         projectile.GetComponent<Projectile>().LaunchFromEnemy(damage, projectileSpeed);
-        FindObjectOfType<AudioManager>().PlaySound("EnemyFire");
+        AudioManager.Instance.PlaySound("EnemyFire");
     }
 
     private IEnumerator FireCoroutine()

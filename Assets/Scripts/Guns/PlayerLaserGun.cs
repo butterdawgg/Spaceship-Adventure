@@ -31,16 +31,8 @@ public class PlayerLaserGun : Gun
         Ray ray = new Ray(Player.playerCamera.transform.position, Player.playerCamera.transform.forward);
         if (Physics.Raycast(ray, out RaycastHit hit, 100f, layerMask))
         {
-            Ray ray1 = new Ray(muzzlePoint.position, (ray.GetPoint(hit.distance) - muzzlePoint.position).normalized);
-            if (Physics.Raycast(ray1, out RaycastHit hit1, layerMask))
-            {
-                lr.SetPosition(1, ray1.GetPoint(hit1.distance));
-                hitCollider = hit1.collider;
-            }
-            else
-            {
-                lr.SetPosition(1, ray.GetPoint(hit.distance));
-            }
+            lr.SetPosition(1, ray.GetPoint(hit.distance));
+            hitCollider = hit.collider;
         }
         else
         {
@@ -59,7 +51,7 @@ public class PlayerLaserGun : Gun
         {
             if(hitCollider != null)
             {
-                if (hitCollider.gameObject.TryGetComponent<Entity>(out Entity entity))
+                if (hitCollider.gameObject.transform.parent.gameObject.TryGetComponent<Entity>(out Entity entity))
                 {
                     entity.Health -= damage;
                     AudioManager.Instance.PlaySound("EnemyHit");
@@ -89,7 +81,7 @@ public class PlayerLaserGun : Gun
         {
             if (hitCollider != null)
             {
-                if (hitCollider.gameObject.TryGetComponent<Entity>(out Entity entity))
+                if (hitCollider.gameObject.transform.parent.gameObject.TryGetComponent<Entity>(out Entity entity))
                     entity.Health -= damage * 0.1f;
             }
 
