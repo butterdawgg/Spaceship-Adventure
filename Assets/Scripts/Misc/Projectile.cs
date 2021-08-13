@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
-    public LayerMask layerMask;
+    [SerializeField] private LayerMask layerMask;
 
     private float Damage;
     private bool IsFriendly;

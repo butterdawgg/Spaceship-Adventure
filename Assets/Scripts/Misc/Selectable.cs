@@ -5,17 +5,15 @@ using UnityEngine.UI;
 
 public class Selectable : MonoBehaviour
 {
-    public Item item;
-    public Text nameText;
-    public Text descriptionText;
-    public Text selectedText;
+    [SerializeField] private Item item;
+    [SerializeField] private Text nameText;
+    [SerializeField] private Text descriptionText;
+    [SerializeField] private Text selectedText;
 
-    public Button unlockButton;
+    [SerializeField] private Button unlockButton;
 
     void Awake()
     {
-        //SerializeManager.Instance.SetItemLockedState(item, true);
-        //SerializeManager.Instance.SetFloat(FloatType.Money, 0f);
         nameText.text = item.name;
         descriptionText.text = item.description;
         unlockButton.onClick.AddListener(OnClickUnlockButton);

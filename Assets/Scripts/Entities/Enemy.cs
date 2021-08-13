@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Enemy : Entity
 {
-    //Public fields:
     [SerializeField] float maxSpeed;
     [SerializeField] float rotationSpeed;
     [SerializeField] float stopRadius;
@@ -12,10 +11,8 @@ public class Enemy : Entity
     [SerializeField] float goRadius;
     [SerializeField] ParticleSystem ps1;
 
-
-    //Private fields:
     private Rigidbody rb;
-    Vector3 dirToTarget;
+    private Vector3 dirToTarget;
 
     void Awake()
     {

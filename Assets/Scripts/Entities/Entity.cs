@@ -15,10 +15,10 @@ public class Entity : MonoBehaviour
 
     [SerializeField] protected float maxHealth;
 
+    [SerializeField] protected float scoreGetAmount;
+
     public float Health { get { return _health; } set { if (value > 0) _health = value; else _health = 0; } }
     private float _health;
-
-    public float scoreGetAmount;
 
     protected void SetGunsFiring(bool fire)
     {

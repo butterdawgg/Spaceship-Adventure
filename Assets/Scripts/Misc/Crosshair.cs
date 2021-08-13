@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Crosshair : MonoBehaviour
 {
-    public GameObject arrow;
-    //(Input.mousePosition - arrow.transform.localPosition).normalized
+    [SerializeField] private GameObject arrow;
+    
     void Update()
     {
         Vector2 mouseDistance;

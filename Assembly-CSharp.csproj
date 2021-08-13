@@ -74,7 +74,6 @@
     <Compile Include="Assets\Scripts\Managers\UI.cs" />
     <Compile Include="Assets\Scripts\Managers\UnitSpawner.cs" />
     <Compile Include="Assets\Scripts\Misc\Crosshair.cs" />
-    <Compile Include="Assets\Scripts\Misc\LaserSight.cs" />
     <Compile Include="Assets\Scripts\Misc\Pickable.cs" />
     <Compile Include="Assets\Scripts\Misc\PlayerInitializer.cs" />
     <Compile Include="Assets\Scripts\Misc\Projectile.cs" />

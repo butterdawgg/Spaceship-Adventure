@@ -4,13 +4,11 @@ using UnityEngine;
 
 public class Tower : Entity
 {
-    //Public fields:
     [SerializeField] float radius;
     [SerializeField] float smoothness;
     [SerializeField] GameObject towerPivot;
     [SerializeField] GameObject towerBase;
     [SerializeField] Vector3 defaultPosition;
-    
 
     void Awake()
     {
