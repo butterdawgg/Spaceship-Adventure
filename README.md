@@ -1,6 +1,6 @@
 # Spaceship Source Code
 
-Source code of **butterdoug/Spaceship***
+Source code of ***butterdawgg/Spaceship***
 
 **Recent update:**
 - added music
