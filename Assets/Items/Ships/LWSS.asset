@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f678e837f6aaf34a9f829f8e5adfcf2, type: 3}
+  m_Name: LWSS
+  m_EditorClassIdentifier: 
+  name: LWSS-41 model F
+  description: Lightweight spaceship that is commonly used in special forces. Has
+    increased speed and maneuverability in exchange for low health and energy amounts.
+  prefab: {fileID: 560589661178939556, guid: ee91f1c881723774d9b10110f769178c, type: 3}
+  idType: 0
+  id: 1
+  unlockPrice: 500
+  isLocked: 1

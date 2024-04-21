@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f678e837f6aaf34a9f829f8e5adfcf2, type: 3}
+  m_Name: HWSS
+  m_EditorClassIdentifier: 
+  name: HWSS-41 model HB
+  description: Heavy spacefigher with increased health and energy amounts. Is used
+    in more serious space conflicts. It also has 3 guns mounts, which greatly increases
+    it's firepower
+  prefab: {fileID: 560589661178939556, guid: 4c55e75130279da4f883aee720efefbd, type: 3}
+  idType: 0
+  id: 2
+  unlockPrice: 1000
+  isLocked: 1
