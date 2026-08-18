@@ -1,4 +1,4 @@
-# Spaceship Source Code
+# Spaceship Adventure
 
 **Recent update:**
 - added music
